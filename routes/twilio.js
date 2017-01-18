@@ -1,0 +1,52 @@
+var express = require('express')
+var router = express.Router()
+var controllers = require('../controllers')
+
+
+router.get('/task', function(req, res, next) {
+    res.json({
+    	confirmation: 'success',
+    	message: 'It worked!'
+    })
+})
+
+router.post('/task', function(req, res, next) {
+//    res.render('index', { title: 'Express' })
+
+	console.log('TWILIO: '+JSON.stringify(req.body))
+	// TWILIO: {"ToCountry":"US","ToState":"NY","SmsMessageSid":"SM0a1de785280d9cce83cd5585741354b7","NumMedia":"0","ToCity":"NEW YORK","FromZip":"10128","SmsSid":"SM0a1de785280d9cce83cd5585741354b7","FromState":"CT","SmsStatus":"received","FromCity":"NORWALK","Body":"Test task","FromCountry":"US","To":"+16467130087","ToZip":"10028","NumSegments":"1","MessageSid":"SM0a1de785280d9cce83cd5585741354b7","AccountSid":"AC817c36f0cdb7e4d489c5e2586a149095","From":"+12037227160","ApiVersion":"2010-04-01"}
+
+	var message = req.body['Body']	
+	var task = {
+		title: 'Twilio Task',
+		category: 'delivery',
+		description: message
+	}
+
+	var from = req.body['From'].replace('+1', '') // phone # of sender
+
+	controllers.profile.get({phone: from}, false)
+	.then(function(profiles){
+		if (profiles.length == 0){
+			throw new Error('Go away.')
+			return
+		}
+
+		var profile = profiles[0]
+		task['profile'] = {
+			id: profile.id,
+			username: profile.username
+		}
+
+		return controllers.task.post(task, false)
+	})
+	.then(function(result){
+		console.log('SUCCESS: '+JSON.stringify(result))
+	    res.send('Hello!')
+	})
+	.catch(function(err){
+		console.log('ERROR: '+err.message)
+	})
+})
+
+module.exports = router
