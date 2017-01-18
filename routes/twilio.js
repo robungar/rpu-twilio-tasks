@@ -17,10 +17,16 @@ router.post('/task', function(req, res, next) {
 	// TWILIO: {"ToCountry":"US","ToState":"NY","SmsMessageSid":"SM0a1de785280d9cce83cd5585741354b7","NumMedia":"0","ToCity":"NEW YORK","FromZip":"10128","SmsSid":"SM0a1de785280d9cce83cd5585741354b7","FromState":"CT","SmsStatus":"received","FromCity":"NORWALK","Body":"Test task","FromCountry":"US","To":"+16467130087","ToZip":"10028","NumSegments":"1","MessageSid":"SM0a1de785280d9cce83cd5585741354b7","AccountSid":"AC817c36f0cdb7e4d489c5e2586a149095","From":"+12037227160","ApiVersion":"2010-04-01"}
 
 	var message = req.body['Body']	
+	// Title. Category. task description.
+	// example: 'Package pickup. Delivery. Please pick up my package from the post office.'
+
+	var parts = message.split('.') // hopefully 3 parts
+	var description = (parts.length < 3) ? '' : parts[2].trim()
+
 	var task = {
-		title: 'Twilio Task',
-		category: 'delivery',
-		description: message
+		title: parts[0],
+		category: (parts.length == 1) ? 'misc' : parts[1].trim().toLowerCase(),
+		description: description
 	}
 
 	var from = req.body['From'].replace('+1', '') // phone # of sender
