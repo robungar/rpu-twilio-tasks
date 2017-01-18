@@ -20,12 +20,22 @@ router.post('/task', function(req, res, next) {
 	// Title. Category. task description.
 	// example: 'Package pickup. Delivery. Please pick up my package from the post office.'
 
+	var validCategories = ['delivery', 'dog walking', 'delivery', 'misc']
+
 	var parts = message.split('.') // hopefully 3 parts
-	var description = (parts.length < 3) ? '' : parts[2].trim()
+	var category = (parts.length == 1) ? 'misc' : parts[1].trim().toLowerCase()
+	var description = null
+
+	if(validCategories.indexOf(category) == -1){
+		category = 'misc'
+		description = parts[1].trim()
+	} else {
+		description = (parts.length < 3) ? '' : parts[2].trim()
+	}
 
 	var task = {
 		title: parts[0],
-		category: (parts.length == 1) ? 'misc' : parts[1].trim().toLowerCase(),
+		category: category,
 		description: description
 	}
 
