@@ -31,7 +31,7 @@ router.post('/task', function(req, res, next) {
 		if(parts.length == 2){
 			description = parts[1].trim()
 		} else {
-			var extraLines = parts[3]
+			var extraLines = parts[2]
 			description = parts[1].push(extraLines).trim()
 		}
 	} else {
