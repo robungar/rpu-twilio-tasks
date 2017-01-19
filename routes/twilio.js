@@ -28,7 +28,12 @@ router.post('/task', function(req, res, next) {
 
 	if(validCategories.indexOf(category) == -1){
 		category = 'misc'
-		description = parts[1].trim()
+		if(parts.length == 2){
+			description = parts[1].trim()
+		} else {
+			var extraLines = parts[3]
+			description = parts[1].push(extraLines).trim()
+		}
 	} else {
 		description = (parts.length < 3) ? '' : parts[2].trim()
 	}
