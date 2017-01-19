@@ -7,8 +7,15 @@ import { Authenticate } from '../view'
 class Account extends Component {
 
 	componentDidMount(){
-		if (this.props.user == null) // check current user
-			this.props.checkCurrentUser()
+		if (this.props.user == !null)
+			return
+		this.props.checkCurrentUser()
+		.then(response => {
+
+		})
+		.catch(err => {
+			console.log('ERROR: '+err.message)
+		})
 	}
 
 	login(credentials){

@@ -32343,8 +32343,10 @@
 		_createClass(Account, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
-				if (this.props.user == null) // check current user
-					this.props.checkCurrentUser();
+				if (this.props.user == !null) return;
+				this.props.checkCurrentUser().then(function (response) {}).catch(function (err) {
+					console.log('ERROR: ' + err.message);
+				});
 			}
 		}, {
 			key: 'login',
