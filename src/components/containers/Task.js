@@ -5,12 +5,7 @@ import actions from '../../actions'
 class Task extends Component {
 	
 	componentDidMount(){
-		// console.log('componentDidMount: '+JSON.stringify(this.props.params.id))
-
-		// Grab the task from the store:
-		// const taskId = this.props.params.id
-		// const task = this.props.tasks[taskId]
-		// console.log('componentDidMount: '+JSON.stringify(task))
+		 console.log('componentDidMount: '+JSON.stringify(this.props))
 	}
 
 	render(){
@@ -21,7 +16,16 @@ class Task extends Component {
 				{task.category}<br />
 				<h1>{task.title}</h1><br />
 				{task.description}<br />
-				{task.profile.username}
+				{task.profile.username}<br />
+
+				{
+					(this.props.account.user == null) ? <h3>Please Log in or Register to Reply</h3> : 
+					<div>
+						<h3>Reply</h3>
+						<textarea placeholder="Enter a message to respond"></textarea><br />
+						<button>Send Reply</button>
+					</div>
+				}
 			</div>
 		)
 	}
@@ -29,7 +33,8 @@ class Task extends Component {
 
 const stateToProps = (state) => {
 	return {
-		tasks: state.task
+		tasks: state.task,
+		account: state.account
 	}
 }
 

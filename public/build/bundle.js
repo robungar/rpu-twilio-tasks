@@ -56,8 +56,6 @@
 	
 	var _layout = __webpack_require__(178);
 	
-	var _containers = __webpack_require__(180);
-	
 	var _reactRedux = __webpack_require__(197);
 	
 	var _stores = __webpack_require__(239);
@@ -84,7 +82,7 @@
 			_reactRouter.Router,
 			{ history: _reactRouter.browserHistory },
 			_react2.default.createElement(_reactRouter.Route, { path: '/', component: _layout.Home }),
-			_react2.default.createElement(_reactRouter.Route, { path: '/task/:id', component: _containers.Task })
+			_react2.default.createElement(_reactRouter.Route, { path: '/task/:id', component: _layout.Split })
 		)
 	);
 	
@@ -21526,15 +21524,20 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.Home = undefined;
+	exports.Split = exports.Home = undefined;
 	
 	var _Home = __webpack_require__(179);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
+	var _Split = __webpack_require__(298);
+	
+	var _Split2 = _interopRequireDefault(_Split);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.Home = _Home2.default;
+	exports.Split = _Split2.default;
 
 /***/ },
 /* 179 */
@@ -32600,7 +32603,6 @@
 	
 			default:
 				return state;
-	
 		}
 	};
 
@@ -37564,12 +37566,7 @@
 		_createClass(Task, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
-				// console.log('componentDidMount: '+JSON.stringify(this.props.params.id))
-	
-				// Grab the task from the store:
-				// const taskId = this.props.params.id
-				// const task = this.props.tasks[taskId]
-				// console.log('componentDidMount: '+JSON.stringify(task))
+				console.log('componentDidMount: ' + JSON.stringify(this.props));
 			}
 		}, {
 			key: 'render',
@@ -37589,7 +37586,28 @@
 					_react2.default.createElement('br', null),
 					task.description,
 					_react2.default.createElement('br', null),
-					task.profile.username
+					task.profile.username,
+					_react2.default.createElement('br', null),
+					this.props.account.user == null ? _react2.default.createElement(
+						'h3',
+						null,
+						'Please Log in or Register to Reply'
+					) : _react2.default.createElement(
+						'div',
+						null,
+						_react2.default.createElement(
+							'h3',
+							null,
+							'Reply'
+						),
+						_react2.default.createElement('textarea', { placeholder: 'Enter a message to respond' }),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'button',
+							null,
+							'Send Reply'
+						)
+					)
 				);
 			}
 		}]);
@@ -37599,11 +37617,51 @@
 	
 	var stateToProps = function stateToProps(state) {
 		return {
-			tasks: state.task
+			tasks: state.task,
+			account: state.account
 		};
 	};
 	
 	exports.default = (0, _reactRedux.connect)(stateToProps)(Task);
+
+/***/ },
+/* 298 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _containers = __webpack_require__(180);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function (props) {
+		return _react2.default.createElement(
+			'div',
+			{ className: 'container' },
+			_react2.default.createElement(
+				'div',
+				{ className: 'row' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'col-md-8' },
+					_react2.default.createElement(_containers.Task, props)
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'col-md-4' },
+					_react2.default.createElement(_containers.Account, null)
+				)
+			)
+		);
+	};
 
 /***/ }
 /******/ ]);
