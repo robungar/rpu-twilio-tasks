@@ -28,7 +28,7 @@ router.post('/task', function(req, res, next) {
 
 	if(validCategories.indexOf(category) == -1){
 		category = 'misc'
-		var theRest = parts.slice(1, )
+		var theRest = parts.slice(1)
 		description = theRest.trim()
 	} else {
 		description = (parts.length < 3) ? '' : parts[2].trim()
