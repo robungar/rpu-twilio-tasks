@@ -32487,7 +32487,7 @@
 	
 	var initialState = {
 		selectedCategory: 'delivery',
-		categories: ['delivery', 'dog walking', 'house cleaning']
+		categories: ['misc', 'delivery', 'dog walking', 'house cleaning']
 	};
 	
 	exports.default = function () {
