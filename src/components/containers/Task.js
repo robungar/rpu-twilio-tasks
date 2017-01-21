@@ -3,9 +3,55 @@ import { connect } from 'react-redux'
 import actions from '../../actions'
 
 class Task extends Component {
+	constructor(){
+		super()
+		this.state = {
+			message: {
+				text: ''
+			}
+		}
+	}
+
 	
 	componentDidMount(){
 		 console.log('componentDidMount: '+JSON.stringify(this.props))
+	}
+
+	updateMessage(event){
+		let updated = Object.assign({}, this.state.message)
+		updated['text'] = event.target.value
+
+		this.setState({
+			message: updated
+		})
+	//	console.log('message'+JSON.stringify(this.state.message))
+	}
+
+
+	submitMessage(event){
+		event.preventDefault()
+		console.log('submitMessage: '+JSON.stringify(this.state.message))
+		let updated = Object.assign({}, this.state.message)
+		
+		const user = this.props.account.user
+		updated['profile'] = {
+			id: user.id,
+			username: user.username
+		}
+
+		updated['task'] = this.props.params.id
+
+		console.log('submitMessage: '+JSON.stringify(updated))
+		 this.props.submitMessage(updated)
+		 .then(response => {
+		 	console.log('MESSAGE CREATED: '+JSON.stringify(response))
+		 	alert('Thanks for replying. Good luck!')
+		 	// send a notification to the task creator
+		 	
+		 })
+		 .catch(err => {
+		 	console.log('ERR: '+JSON.stringify(err))
+		 })
 	}
 
 	render(){
@@ -22,8 +68,8 @@ class Task extends Component {
 					(this.props.account.user == null) ? <h3>Please Log in or Register to Reply</h3> : 
 					<div>
 						<h3>Reply</h3>
-						<textarea placeholder="Enter a message to respond"></textarea><br />
-						<button>Send Reply</button>
+						<textarea onChange={this.updateMessage.bind(this)} placeholder="Enter a message to respond"></textarea><br />
+						<button onClick={this.submitMessage.bind(this)}>Send Reply</button>
 					</div>
 				}
 			</div>
@@ -38,4 +84,10 @@ const stateToProps = (state) => {
 	}
 }
 
-export default connect(stateToProps)(Task)
+const dispatchToProps = (dispatch) => {
+	return {
+		submitMessage: (params) => dispatch(actions.submitMessage(params))
+	}
+}
+
+export default connect(stateToProps, dispatchToProps)(Task)

@@ -71,6 +71,8 @@ router.post('/:resource', function(req, res, next) {
 
 	controller.post(req.body, false)
 	.then(function(result){
+			console.log(JSON.stringify(result))
+
 	    res.json({
 	    	confirmation: 'success',
 	    	result: result

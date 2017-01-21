@@ -1,7 +1,27 @@
 var express = require('express')
 var router = express.Router()
 var controllers = require('../controllers')
+//var twilio = require('twilio')
+var utils = require('../utils')
 
+
+router.get('/notify', function(req, res, next) {
+	utils.TwilioHelper
+	.sendSMS('5166064964', 'Does this thing work 4?')
+	.then(function(message){
+		res.json({
+			confirmation: 'success',
+			message: message
+		})
+		return message
+	})
+	.catch(function(err){
+		res.json({
+			confirmation: 'fail',
+			message: err
+		})
+	})
+})
 
 router.get('/task', function(req, res, next) {
     res.json({
