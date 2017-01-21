@@ -91,7 +91,12 @@ export default {
 			type: constants.CATEGORY_SELECTED,
 			payload: category
 		}
+	},
 
+	notify: (params) => {
+		return(dispatch) => {
+			return dispatch(postRequest('/twilio/notify', params, null))
+		}
 	}
 
 	// taskCreated: (task) => {

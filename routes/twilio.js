@@ -23,6 +23,45 @@ router.get('/notify', function(req, res, next) {
 	})
 })
 
+
+router.post('/notify', function(req, res, next) {
+	console.log(JSON.stringify(req.body))
+	if(req.body.recipient == null){
+		res.json({
+			confirmation: 'fail',
+			message: 'Please specify a recipient'
+		})
+		return
+	}
+
+	if(req.body.text == null){
+		res.json({
+			confirmation: 'fail',
+			message: 'Please include a message'
+		})
+		return
+	}
+
+	controllers.profile
+	.getById(req.body.recipient, false) // Get profile first
+	.then(function(profile){
+		return utils.TwilioHelper.sendSMS(profile.phone, req.body.text)
+	})
+	.then(function(message){
+		res.json({
+			confirmation: 'success',
+			message: message
+		})
+		return message
+	})	
+	.catch(function(err){
+		res.json({
+			confirmation: 'fail',
+			message: err
+		})
+	})
+})
+
 router.get('/task', function(req, res, next) {
     res.json({
     	confirmation: 'success',

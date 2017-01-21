@@ -41,16 +41,26 @@ class Task extends Component {
 
 		updated['task'] = this.props.params.id
 
+		const taskId = this.props.params.id
+		const task = this.props.tasks[taskId]
+
 		console.log('submitMessage: '+JSON.stringify(updated))
 		 this.props.submitMessage(updated)
 		 .then(response => {
-		 	console.log('MESSAGE CREATED: '+JSON.stringify(response))
-		 	alert('Thanks for replying. Good luck!')
-		 	// send a notification to the task creator
-		 	
+		 		console.log('MESSAGE CREATED: '+JSON.stringify(response))
+		 		//alert('Thanks for replying. Good luck!')
+		 		// TO DO: send a notification to the task creator
+		 		const params = {
+		 			recipient: task.profile.id,
+		 			text: 'Hello from React'
+		 		}
+		 		return this.props.notify(params)
+		 })
+		 .then(response => {
+		 		alert('Thanks for replying. Good luck!')
 		 })
 		 .catch(err => {
-		 	console.log('ERR: '+JSON.stringify(err))
+		 		console.log('ERR: '+JSON.stringify(err))
 		 })
 	}
 
@@ -86,7 +96,8 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
 	return {
-		submitMessage: (params) => dispatch(actions.submitMessage(params))
+		submitMessage: (params) => dispatch(actions.submitMessage(params)),
+		notify: (params) => dispatch(actions.notify(params))
 	}
 }
 
