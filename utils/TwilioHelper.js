@@ -1,4 +1,5 @@
 var twilio = require('twilio')
+var Promise = require('bluebird')
 
 module.exports = {
 	sendSMS: function(recipient, message){
