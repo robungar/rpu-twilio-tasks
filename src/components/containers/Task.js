@@ -52,7 +52,7 @@ class Task extends Component {
 		 		// TO DO: send a notification to the task creator
 		 		const params = {
 		 			recipient: task.profile.id,
-		 			text: 'Hello from React'
+		 			text: updated.text
 		 		}
 		 		return this.props.notify(params)
 		 })
