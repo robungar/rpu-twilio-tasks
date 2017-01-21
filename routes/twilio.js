@@ -119,7 +119,10 @@ router.post('/task', function(req, res, next) {
 		return controllers.task.post(task, false)
 	})
 	.then(function(result){
-		console.log('SUCCESS: '+JSON.stringify(result))
+	//	console.log('SUCCESS: '+JSON.stringify(result))
+		var msg = 'Thanks, we got your task.'
+
+		return utils.TwilioHelper.sendSMS(from, msg)
 	    res.send('Hello!')
 	})
 	.catch(function(err){
