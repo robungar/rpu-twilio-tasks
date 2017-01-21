@@ -21579,21 +21579,103 @@
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					{ className: 'row' },
+					{ id: 'wrapper' },
 					_react2.default.createElement(
 						'div',
-						{ className: 'col-md-2' },
+						{ id: 'main' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'inner' },
+							_react2.default.createElement(
+								'header',
+								{ id: 'header' },
+								_react2.default.createElement(
+									'a',
+									{ href: 'index.html', className: 'logo' },
+									_react2.default.createElement(
+										'strong',
+										null,
+										'Editorial'
+									),
+									' by HTML5 UP'
+								),
+								_react2.default.createElement(
+									'ul',
+									{ className: 'icons' },
+									_react2.default.createElement(
+										'li',
+										null,
+										_react2.default.createElement(
+											'a',
+											{ href: '#', className: 'icon fa-twitter' },
+											_react2.default.createElement(
+												'span',
+												{ className: 'label' },
+												'Twitter'
+											)
+										)
+									),
+									_react2.default.createElement(
+										'li',
+										null,
+										_react2.default.createElement(
+											'a',
+											{ href: '#', className: 'icon fa-facebook' },
+											_react2.default.createElement(
+												'span',
+												{ className: 'label' },
+												'Facebook'
+											)
+										)
+									),
+									_react2.default.createElement(
+										'li',
+										null,
+										_react2.default.createElement(
+											'a',
+											{ href: '#', className: 'icon fa-snapchat-ghost' },
+											_react2.default.createElement(
+												'span',
+												{ className: 'label' },
+												'Snapchat'
+											)
+										)
+									),
+									_react2.default.createElement(
+										'li',
+										null,
+										_react2.default.createElement(
+											'a',
+											{ href: '#', className: 'icon fa-instagram' },
+											_react2.default.createElement(
+												'span',
+												{ className: 'label' },
+												'Instagram'
+											)
+										)
+									),
+									_react2.default.createElement(
+										'li',
+										null,
+										_react2.default.createElement(
+											'a',
+											{ href: '#', className: 'icon fa-medium' },
+											_react2.default.createElement(
+												'span',
+												{ className: 'label' },
+												'Medium'
+											)
+										)
+									)
+								)
+							),
+							_react2.default.createElement(_containers.Tasks, null)
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ id: 'sidebar' },
 						_react2.default.createElement(_containers.Categories, null)
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'col-md-8' },
-						_react2.default.createElement(_containers.Tasks, null)
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'col-md-2' },
-						_react2.default.createElement(_containers.Account, null)
 					)
 				);
 			}
@@ -21719,27 +21801,36 @@
 		}, {
 			key: 'render',
 			value: function render() {
+				var taskList = this.props.tasks[this.props.tasks.selectedCategory];
+	
 				return _react2.default.createElement(
-					'div',
-					null,
+					'section',
+					{ id: 'banner' },
 					_react2.default.createElement(
-						'h2',
-						null,
-						'Tasks'
-					),
-					_react2.default.createElement(
-						'ol',
-						null,
-						this.props.tasks[this.props.tasks.selectedCategory] == null ? null : this.props.tasks[this.props.tasks.selectedCategory].map(function (task, i) {
+						'div',
+						{ className: 'content' },
+						_react2.default.createElement(
+							'h3',
+							null,
+							'Current Tasks'
+						),
+						taskList == null ? null : taskList.map(function (task, i) {
 							return _react2.default.createElement(
-								'li',
-								{ key: task.id },
+								'div',
+								{ key: task.id, className: 'box' },
 								_react2.default.createElement(
 									_reactRouter.Link,
 									{ to: '/task/' + task.id },
-									task.title,
-									', ',
-									task.category
+									_react2.default.createElement(
+										'h3',
+										null,
+										task.title
+									)
+								),
+								_react2.default.createElement(
+									_reactRouter.Link,
+									{ to: '/task/' + task.id },
+									task.description
 								)
 							);
 						})
@@ -37333,27 +37424,65 @@
 	
 				return _react2.default.createElement(
 					'div',
-					null,
+					{ className: 'inner' },
 					_react2.default.createElement(
-						'h2',
-						null,
-						'Categories'
+						'section',
+						{ id: 'search', className: 'alt' },
+						_react2.default.createElement(
+							'form',
+							{ method: 'post', action: '#' },
+							_react2.default.createElement('input', { type: 'text', name: 'query', id: 'query', placeholder: 'Search' })
+						)
 					),
 					_react2.default.createElement(
-						'ul',
-						null,
-						this.props.tasks.categories.map(function (category, i) {
-							var color = category == _this2.props.tasks.selectedCategory ? 'red' : '#333';
-							return _react2.default.createElement(
-								'li',
-								{ key: category },
-								_react2.default.createElement(
-									'a',
-									{ onClick: _this2.selectCategory.bind(_this2, category), href: '#', style: { color: color } },
-									category
-								)
-							);
-						})
+						'nav',
+						{ id: 'menu' },
+						_react2.default.createElement(
+							'header',
+							{ className: 'major' },
+							_react2.default.createElement(
+								'h2',
+								null,
+								'Categories'
+							)
+						),
+						_react2.default.createElement(
+							'ul',
+							null,
+							this.props.tasks.categories.map(function (category, i) {
+								var color = category == _this2.props.tasks.selectedCategory ? 'red' : '#333';
+								return _react2.default.createElement(
+									'li',
+									{ key: category },
+									_react2.default.createElement(
+										'a',
+										{ onClick: _this2.selectCategory.bind(_this2, category), href: '#', style: { color: color } },
+										category
+									)
+								);
+							})
+						)
+					),
+					_react2.default.createElement(
+						'footer',
+						{ id: 'footer' },
+						_react2.default.createElement(
+							'p',
+							{ className: 'copyright' },
+							'\xA9 Untitled. All rights reserved. Demo Images: ',
+							_react2.default.createElement(
+								'a',
+								{ href: 'https://unsplash.com' },
+								'Unsplash'
+							),
+							'. Design: ',
+							_react2.default.createElement(
+								'a',
+								{ href: 'https://html5up.net' },
+								'HTML5 UP'
+							),
+							'.'
+						)
 					)
 				);
 			}

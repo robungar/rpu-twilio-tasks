@@ -40,26 +40,27 @@ class Tasks extends Component {
 	}
 
 	render(){
+		const taskList = this.props.tasks[this.props.tasks.selectedCategory]
+
 		return (
-			<div>
-				<h2>Tasks</h2>
-				<ol>
-					{ (this.props.tasks[this.props.tasks.selectedCategory] == null) ? null :
-						this.props.tasks[this.props.tasks.selectedCategory].map((task, i) => {
+			<section id="banner">
+				<div className="content">
+				<h3>Current Tasks</h3>
+				{ (taskList == null) ? null :
+						taskList.map((task, i) => {
 							return (
-								<li key={task.id}>
-									<Link to={'/task/'+task.id}>{task.title}, {task.category}</Link>
-								</li>
+								<div key={task.id} className="box">
+									<Link to={'/task/'+task.id}><h3>{task.title}</h3></Link>
+									<Link to={'/task/'+task.id}>{task.description}</Link>
+								</div>
 							)
 						})
 					}
-				</ol>
-
+				</div>
 				<CreateTask onSubmitTask={this.createTask.bind(this)} />
-			</div>
+			</section>
 		)
 	}
-
 }
 
 const stateToProps = (state) => {
