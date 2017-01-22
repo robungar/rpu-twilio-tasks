@@ -20,18 +20,20 @@ class Categories extends Component {
 					<header className="major">
 						<h2>Categories</h2>
 					</header>
+
 					<ul>
 						{this.props.tasks.categories.map((category, i) => {
 							const color = (category == this.props.tasks.selectedCategory) ? 'red' : '#333'
 							return (
-							<li key={category}>
-								<a onClick={this.selectCategory.bind(this, category)} href="#" style={{color: color}}>{category}</a>
-							</li>
+								<li key={category}>
+									<a onClick={this.selectCategory.bind(this, category)} href="#" style={{color: color}}>{category}</a>
+								</li>
 								)
 							})
 						}
 					</ul>
 				</nav>
+				
 				<footer id="footer">
 					<p className="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 				</footer>

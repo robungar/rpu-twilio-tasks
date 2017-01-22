@@ -29,7 +29,7 @@ router.post('/notify', function(req, res, next) {
 	if(req.body.recipient == null){
 		res.json({
 			confirmation: 'fail',
-			message: 'Please specify a recipient'
+			message: 'Please specify a recipient.'
 		})
 		return
 	}
@@ -37,7 +37,7 @@ router.post('/notify', function(req, res, next) {
 	if(req.body.text == null){
 		res.json({
 			confirmation: 'fail',
-			message: 'Please include a message'
+			message: 'Please include a message.'
 		})
 		return
 	}
@@ -81,7 +81,7 @@ router.post('/task', function(req, res, next) {
 	// Title. Category. task description.
 	// example: 'Package pickup. Delivery. Please pick up my package from the post office.'
 
-	var validCategories = ['delivery', 'dog walking', 'delivery', 'misc']
+	var validCategories = ['delivery', 'dog walking', 'house cleaning', 'misc']
 
 	var parts = message.split('.') // hopefully 3 parts
 	var category = (parts.length == 1) ? 'misc' : parts[1].trim().toLowerCase()
@@ -123,7 +123,7 @@ router.post('/task', function(req, res, next) {
 		var msg = 'Thanks, we got your task.'
 
 		return utils.TwilioHelper.sendSMS(from, msg)
-	    res.send('Hello!')
+	  
 	})
 	.catch(function(err){
 		console.log('ERROR: '+err.message)
