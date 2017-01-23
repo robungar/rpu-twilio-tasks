@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { APIManager } from '../../utils'
-import { CreateTask } from '../view'
+import { Authenticate } from '../view'
 import { connect } from 'react-redux'
 import actions from '../../actions'
 import { Link } from 'react-router'
@@ -57,7 +57,7 @@ class Tasks extends Component {
 						})
 					}
 				</div>
-				<CreateTask onSubmitTask={this.createTask.bind(this)} />
+				<Authenticate />
 			</section>
 		)
 	}

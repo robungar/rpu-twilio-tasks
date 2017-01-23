@@ -5,7 +5,7 @@ const getRequest = (path, params, actionType) => {
 	return (dispatch) => 
 		APIManager.get(path, params)
 		.then(response => {
-//			console.log('GET: '+JSON.stringify(response))
+
 			const payload = response.results || response.result || response.user
 
 			dispatch({
@@ -16,7 +16,7 @@ const getRequest = (path, params, actionType) => {
 			return response
 		})
 		.catch(err => {
-//			console.log('ERR: '+JSON.stringify(err.message))
+
 			throw err
 		})
 }

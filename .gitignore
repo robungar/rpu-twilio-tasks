@@ -1,3 +1,4 @@
 .env
 /public/theme/
+/public/build/
 /node_modules/

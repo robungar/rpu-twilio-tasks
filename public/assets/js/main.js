@@ -122,7 +122,7 @@
 			// Events.
 
 				// Link clicks.
-					$sidebar.on('click', 'a', function(event) {
+				$sidebar.on('click', 'a', function(event) {
 
 						// >large? Bail.
 							if (!skel.breakpoint('large').active)
