@@ -37374,6 +37374,7 @@
 								null,
 								_utils.TextUtil.capitalize(task.profile.username)
 							),
+							_react2.default.createElement('br', null),
 							_utils.DateUtils.formattedDate(task.timestamp),
 							_react2.default.createElement('hr', null),
 							_react2.default.createElement(

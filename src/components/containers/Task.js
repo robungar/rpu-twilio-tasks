@@ -76,7 +76,7 @@ class Task extends Component {
 				<div className="posts">
 					<article style={{background: '#f9f9f9', border:'1px solid #ddd', padding:16}}>
 						<strong>{TextUtil.capitalize(task.category)}</strong><br />
-						<strong>{TextUtil.capitalize(task.profile.username)}</strong>
+						<strong>{TextUtil.capitalize(task.profile.username)}</strong><br />
 							{DateUtils.formattedDate(task.timestamp)}
 						<hr />
 						<p>{task.description}</p>
