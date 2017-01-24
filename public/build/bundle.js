@@ -37335,61 +37335,49 @@
 				var task = this.props.tasks[taskId];
 				return _react2.default.createElement(
 					'div',
-					{ id: 'wrapper' },
+					null,
 					_react2.default.createElement(
+						'h2',
+						null,
+						task.title
+					),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						'h3',
+						null,
+						task.description
+					),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						'h3',
+						null,
+						task.category
+					),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						'h3',
+						null,
+						task.profile.username
+					),
+					_react2.default.createElement('br', null),
+					this.props.account.user == null ? _react2.default.createElement(
+						'h3',
+						null,
+						'Please Log in or Register to Reply'
+					) : _react2.default.createElement(
 						'div',
-						{ id: 'main' },
+						null,
 						_react2.default.createElement(
-							'div',
-							{ className: 'inner' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'header' },
-								_react2.default.createElement(
-									'h2',
-									null,
-									task.title
-								),
-								_react2.default.createElement('br', null),
-								_react2.default.createElement(
-									'h3',
-									null,
-									task.description
-								),
-								_react2.default.createElement('br', null),
-								_react2.default.createElement(
-									'h3',
-									null,
-									task.category
-								),
-								_react2.default.createElement('br', null),
-								_react2.default.createElement(
-									'h3',
-									null,
-									task.profile.username
-								),
-								_react2.default.createElement('br', null),
-								this.props.account.user == null ? _react2.default.createElement(
-									'h3',
-									null,
-									'Please Log in or Register to Reply'
-								) : _react2.default.createElement(
-									'div',
-									null,
-									_react2.default.createElement(
-										'h3',
-										null,
-										'Reply'
-									),
-									_react2.default.createElement('textarea', { onChange: this.updateMessage.bind(this), placeholder: 'Enter a message to respond' }),
-									_react2.default.createElement('br', null),
-									_react2.default.createElement(
-										'button',
-										{ onClick: this.submitMessage.bind(this) },
-										'Send Reply'
-									)
-								)
-							)
+							'h3',
+							null,
+							'Reply'
+						),
+						_react2.default.createElement('textarea', { onChange: this.updateMessage.bind(this), placeholder: 'Enter a message to respond' }),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'button',
+							{ onClick: this.submitMessage.bind(this) },
+							'Send Reply'
 						)
 					)
 				);

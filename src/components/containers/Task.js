@@ -68,26 +68,20 @@ class Task extends Component {
 		const taskId = this.props.params.id
 		const task = this.props.tasks[taskId]
 		return(
-			<div id="wrapper">
-				<div id="main">
-					<div className="inner">
-						<div className="header">
-							<h2>{task.title}</h2><br />
-							<h3>{task.description}</h3><br />
-							<h3>{task.category}</h3><br />
-							<h3>{task.profile.username}</h3><br />
+			<div>
+					<h2>{task.title}</h2><br />
+					<h3>{task.description}</h3><br />
+					<h3>{task.category}</h3><br />
+					<h3>{task.profile.username}</h3><br />
 
-							{
-								(this.props.account.user == null) ? <h3>Please Log in or Register to Reply</h3> : 
-								<div>
-									<h3>Reply</h3>
-									<textarea onChange={this.updateMessage.bind(this)} placeholder="Enter a message to respond"></textarea><br />
-									<button onClick={this.submitMessage.bind(this)}>Send Reply</button>
-								</div>
-							}
+					{
+						(this.props.account.user == null) ? <h3>Please Log in or Register to Reply</h3> : 
+						<div>
+							<h3>Reply</h3>
+							<textarea onChange={this.updateMessage.bind(this)} placeholder="Enter a message to respond"></textarea><br />
+							<button onClick={this.submitMessage.bind(this)}>Send Reply</button>
 						</div>
-					</div>
-				</div>
+					}
 			</div>
 		)
 	}
