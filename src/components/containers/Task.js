@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions'
+import { TextUtil, DateUtils } from '../../utils'
 
 class Task extends Component {
 	constructor(){
@@ -68,25 +69,27 @@ class Task extends Component {
 		const taskId = this.props.params.id
 		const task = this.props.tasks[taskId]
 		return(
-			<section>
+			<section style={{paddingTop:24}}>
 				<header className="major">
 					<h2 style={{border: 'none', marginBottom:0}}>{task.title}</h2>
 				</header>
 				<div className="posts">
 					<article style={{background: '#f9f9f9', border:'1px solid #ddd', padding:16}}>
-						<strong>{task.category}</strong><br />
-						<strong>{task.profile.username}</strong>
+						<strong>{TextUtil.capitalize(task.category)}</strong><br />
+						<strong>{TextUtil.capitalize(task.profile.username)}</strong>
+							{DateUtils.formattedDate(task.timestamp)}
+						<hr />
 						<p>{task.description}</p>
 					</article>
 				</div>
 				{
-							(this.props.account.user == null) ? <h3>Please Log in or Register to Reply</h3> : 
-							<div>
-								<h3>Reply</h3>
-								<textarea onChange={this.updateMessage.bind(this)} placeholder="Enter a message to respond"></textarea><br />
-								<button onClick={this.submitMessage.bind(this)}>Send Reply</button>
-							</div>
-							}
+					(this.props.account.user == null) ? <h3>Please Log in or Register to Reply</h3> : 
+					<div>
+						<h3>Reply</h3>
+						<textarea onChange={this.updateMessage.bind(this)} placeholder="Enter a message to respond"></textarea><br />
+						<button onClick={this.submitMessage.bind(this)}>Send Reply</button>
+					</div>
+				}
 			</section>
 		)
 	}
