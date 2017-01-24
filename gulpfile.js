@@ -48,6 +48,6 @@ gulp.task('watch', function(){
     gulp.watch(['./src/*/**.js]', './src/*/*/**.js', './src/*/*/*/**.js'], ['css', 'build'])
 });
 
-gulp.task('prod', ['css', 'build'], function(){})
+gulp.task('prod', ['css', 'copy', 'build'], function(){})
 
 gulp.task('default', ['css', 'copy', 'build', 'watch'], function(){})
