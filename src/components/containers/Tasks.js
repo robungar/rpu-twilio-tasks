@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import actions from '../../actions'
 import { Link } from 'react-router'
 import Task from '../containers'
+import { DateUtil } from '../../utils'
 
 class Tasks extends Component {
 	getTasks(){
@@ -51,7 +52,8 @@ class Tasks extends Component {
 							return (
 								<div key={task.id} className="box">
 									<Link to={'/task/'+task.id}><h3>{task.title}</h3></Link>
-									<Link to={'/task/'+task.id}>{task.description}</Link>
+									<Link to={'/task/'+task.id}>{task.description}</Link><br />
+									<strong>{DateUtil.formattedDate(task.timestamp)}</strong>
 								</div>
 							)
 						})

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions'
-import { TextUtil, DateUtils } from '../../utils'
+import { TextUtil, DateUtil } from '../../utils'
 
 class Task extends Component {
 	constructor(){
@@ -77,7 +77,7 @@ class Task extends Component {
 					<article style={{background: '#f9f9f9', border:'1px solid #ddd', padding:16}}>
 						<strong>{TextUtil.capitalize(task.category)}</strong><br />
 						<strong>{TextUtil.capitalize(task.profile.username)}</strong><br />
-							{DateUtils.formattedDate(task.timestamp)}
+							{DateUtil.formattedDate(task.timestamp)}
 						<hr />
 						<p>{task.description}</p>
 					</article>

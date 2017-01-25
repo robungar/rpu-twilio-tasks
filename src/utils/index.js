@@ -1,10 +1,10 @@
 import APIManager from './APIManager'
 import TextUtil from './TextUtil'
-import DateUtils from './DateUtils'
+import DateUtil from './DateUtil'
 
 export {
 
 	APIManager,
 	TextUtil,
-	DateUtils
+	DateUtil
 }
