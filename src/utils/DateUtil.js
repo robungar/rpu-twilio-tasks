@@ -3,12 +3,22 @@ import Time from 'react-time' // https://github.com/andreypopp/react-time
 
 export default {
 	formattedDate: (date) => {
+		const now = new Date().getTime()
+		console.log('NOW: '+now)
+
+		const diff = now - new Date(date).getTime()
+		console.log('DIFF: '+diff)
+
+		const seconds = diff/ 1000
+		const mins = diff / 60
+		const hours = mins / 60
+
+		if (hours < 24)
+			return <Time value={date} format="MMM DD, YYYY" relative />
 		//if date is within 24 hours, return relative time component
 		// or add hours, minutes
-			var day = 24 * 60 * 60 * 1000
-			if (day < {date})
-				return <Time value={date} format="MM:hh" relative />
-			else
-				return <Time value={date} format="MMM DD, YYYY" />
+			
+			
+		return <Time value={date} format="MMM DD, YYYY" />
 	}
 }

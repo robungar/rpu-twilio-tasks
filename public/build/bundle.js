@@ -21815,6 +21815,8 @@
 							'Current Tasks'
 						),
 						taskList == null ? null : taskList.map(function (task, i) {
+							var username = task.profile.username || 'anonymous';
+	
 							return _react2.default.createElement(
 								'div',
 								{ key: task.id, className: 'box' },
@@ -21828,16 +21830,26 @@
 									)
 								),
 								_react2.default.createElement(
+									'strong',
+									{ style: localStyle.detailText },
+									_utils.DateUtil.formattedDate(task.timestamp)
+								),
+								_react2.default.createElement(
+									'span',
+									{ style: localStyle.pipe },
+									'|'
+								),
+								_react2.default.createElement(
+									'span',
+									{ style: localStyle.detailText },
+									username
+								),
+								_react2.default.createElement(
 									_reactRouter.Link,
 									{ to: '/task/' + task.id },
 									task.description
 								),
-								_react2.default.createElement('br', null),
-								_react2.default.createElement(
-									'strong',
-									null,
-									_utils.DateUtil.formattedDate(task.timestamp)
-								)
+								_react2.default.createElement('br', null)
 							);
 						})
 					),
@@ -21848,6 +21860,17 @@
 	
 		return Tasks;
 	}(_react.Component);
+	
+	var localStyle = {
+		detailText: {
+			float: 'right'
+		},
+		pipe: {
+			float: 'right',
+			marginRight: 12,
+			marginLeft: 12
+		}
+	};
 	
 	var stateToProps = function stateToProps(state) {
 		return {
@@ -21891,7 +21914,7 @@
 	
 	var _TextUtil2 = _interopRequireDefault(_TextUtil);
 	
-	var _DateUtil = __webpack_require__(413);
+	var _DateUtil = __webpack_require__(195);
 	
 	var _DateUtil2 = _interopRequireDefault(_DateUtil);
 	
@@ -29729,7 +29752,49 @@
 	};
 
 /***/ },
-/* 195 */,
+/* 195 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactTime = __webpack_require__(196);
+	
+	var _reactTime2 = _interopRequireDefault(_reactTime);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// https://github.com/andreypopp/react-time
+	
+	exports.default = {
+		formattedDate: function formattedDate(date) {
+			var now = new Date().getTime();
+			console.log('NOW: ' + now);
+	
+			var diff = now - new Date(date).getTime();
+			console.log('DIFF: ' + diff);
+	
+			var seconds = diff / 1000;
+			var mins = diff / 60;
+			var hours = mins / 60;
+	
+			if (hours < 24) return _react2.default.createElement(_reactTime2.default, { value: date, format: 'MMM DD, YYYY', relative: true });
+			//if date is within 24 hours, return relative time component
+			// or add hours, minutes
+	
+	
+			return _react2.default.createElement(_reactTime2.default, { value: date, format: 'MMM DD, YYYY' });
+		}
+	};
+
+/***/ },
 /* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -53076,37 +53141,6 @@
 	
 			default:
 				return state;
-		}
-	};
-
-/***/ },
-/* 413 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactTime = __webpack_require__(196);
-	
-	var _reactTime2 = _interopRequireDefault(_reactTime);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// https://github.com/andreypopp/react-time
-	
-	exports.default = {
-		formattedDate: function formattedDate(date) {
-			//if date is within 24 hours, return relative time component
-			// or add hours, minutes
-			var day = 24 * 60 * 60 * 1000;
-			if (day < { date: date }) return _react2.default.createElement(_reactTime2.default, { value: date, format: 'MM:hh', relative: true });else return _react2.default.createElement(_reactTime2.default, { value: date, format: 'MMM DD, YYYY' });
 		}
 	};
 

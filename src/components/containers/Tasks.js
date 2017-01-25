@@ -49,11 +49,16 @@ class Tasks extends Component {
 				<h3>Current Tasks</h3>
 				{ (taskList == null) ? null :
 						taskList.map((task, i) => {
+							const username = task.profile.username || 'anonymous'
+
 							return (
 								<div key={task.id} className="box">
 									<Link to={'/task/'+task.id}><h3>{task.title}</h3></Link>
+									<strong style={localStyle.detailText}>{DateUtil.formattedDate(task.timestamp)}</strong>
+									<span style={localStyle.pipe}>|</span>
+									<span style={localStyle.detailText}>{username}</span>
 									<Link to={'/task/'+task.id}>{task.description}</Link><br />
-									<strong>{DateUtil.formattedDate(task.timestamp)}</strong>
+									
 								</div>
 							)
 						})
@@ -62,6 +67,17 @@ class Tasks extends Component {
 				<Authenticate />
 			</section>
 		)
+	}
+}
+
+const localStyle = {
+	detailText: {
+		float: 'right'
+	},
+	pipe: {
+		float: 'right',
+		marginRight: 12,
+		marginLeft: 12
 	}
 }
 
