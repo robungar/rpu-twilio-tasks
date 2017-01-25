@@ -9,8 +9,8 @@ export default {
 		const diff = now - new Date(date).getTime()
 		//console.log('DIFF: '+diff)
 
-		const seconds = diff/ 1000
-		const mins = diff / 60
+		const seconds = diff / 1000
+		const mins = seconds / 60
 		const hours = mins / 60
 
 		if (hours < 24)

@@ -29782,7 +29782,7 @@
 			//console.log('DIFF: '+diff)
 	
 			var seconds = diff / 1000;
-			var mins = diff / 60;
+			var mins = seconds / 60;
 			var hours = mins / 60;
 	
 			if (hours < 24) return _react2.default.createElement(_reactTime2.default, { value: date, format: 'MMM DD, YYYY', relative: true });
