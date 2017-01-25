@@ -29776,10 +29776,10 @@
 	exports.default = {
 		formattedDate: function formattedDate(date) {
 			var now = new Date().getTime();
-			console.log('NOW: ' + now);
+			//console.log('NOW: '+now)
 	
 			var diff = now - new Date(date).getTime();
-			console.log('DIFF: ' + diff);
+			//console.log('DIFF: '+diff)
 	
 			var seconds = diff / 1000;
 			var mins = diff / 60;
@@ -29788,7 +29788,6 @@
 			if (hours < 24) return _react2.default.createElement(_reactTime2.default, { value: date, format: 'MMM DD, YYYY', relative: true });
 			//if date is within 24 hours, return relative time component
 			// or add hours, minutes
-	
 	
 			return _react2.default.createElement(_reactTime2.default, { value: date, format: 'MMM DD, YYYY' });
 		}
