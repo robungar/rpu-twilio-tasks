@@ -53105,7 +53105,8 @@
 		formattedDate: function formattedDate(date) {
 			//if date is within 24 hours, return relative time component
 			// or add hours, minutes
-			if ({ date: date } < 24 * 60 * 60 * 1000) return _react2.default.createElement(_reactTime2.default, { value: date, format: 'HH', relative: true });else return _react2.default.createElement(_reactTime2.default, { value: date, format: 'MMM DD, YYYY' });
+			var day = 24 * 60 * 60 * 1000;
+			if (day < { date: date }) return _react2.default.createElement(_reactTime2.default, { value: date, format: 'MM:hh', relative: true });else return _react2.default.createElement(_reactTime2.default, { value: date, format: 'MMM DD, YYYY' });
 		}
 	};
 
