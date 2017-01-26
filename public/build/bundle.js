@@ -52535,7 +52535,8 @@
 					// TO DO: send a notification to the task creator
 					var params = {
 						recipient: task.profile.id,
-						text: updated.text
+						text: updated.text,
+						taskResponder: updated.profile.username
 					};
 					return _this2.props.notify(params);
 				}).then(function (response) {
