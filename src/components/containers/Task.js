@@ -49,8 +49,6 @@ class Task extends Component {
 		 this.props.submitMessage(updated)
 		 .then(response => {
 		 		console.log('MESSAGE CREATED: '+JSON.stringify(response))
-		 		//alert('Thanks for replying. Good luck!')
-		 		// TO DO: send a notification to the task creator
 		 		const params = {
 		 			recipient: task.profile.id,
 		 			text: updated.text,

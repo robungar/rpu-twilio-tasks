@@ -52531,8 +52531,6 @@
 				console.log('submitMessage: ' + JSON.stringify(updated));
 				this.props.submitMessage(updated).then(function (response) {
 					console.log('MESSAGE CREATED: ' + JSON.stringify(response));
-					//alert('Thanks for replying. Good luck!')
-					// TO DO: send a notification to the task creator
 					var params = {
 						recipient: task.profile.id,
 						text: updated.text,
