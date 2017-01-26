@@ -25,12 +25,65 @@ class Authenticate extends Component {
 
 	register(event){
 		// console.log('register: '+JSON.stringify(this.state.credentials))
+		if(this.state.credentials.username.length == 0){
+			swal({
+			  title: "Oops!",
+			  text: "You forgot a username!",
+			  type: "error",
+			})
+
+			return
+		}
+		if(this.state.credentials.email.length == 0){
+			swal({
+			  title: "Oops!",
+			  text: "You forgot an email!",
+			  type: "error",
+			})
+
+			return
+		}
+		if(this.state.credentials.username.phone == 0){
+			swal({
+			  title: "Oops!",
+			  text: "You forgot a phone number!",
+			  type: "error",
+			})
+
+			return
+		}
+		if(this.state.credentials.username.password == 0){
+			swal({
+			  title: "Oops!",
+			  text: "You forgot a password!",
+			  type: "error",
+			})
+
+			return
+		}
 		this.props.onRegister(this.state.credentials)
 	}
 
 	login(event){
 //		console.log('login: '+JSON.stringify(this.state.credentials))
-		this.props.onLogin(this.state.credentials)
+		if(this.state.credentials.username.length == 0){
+			swal({
+			  title: "Oops!",
+			  text: "You forgot your username!",
+			  type: "error",
+			})
+
+			return
+		}
+		if(this.state.credentials.password.length == 0){
+			swal({
+			  title: "Oops!",
+			  text: "You forgot your username!",
+			  type: "error",
+			})
+			return
+		}
+	this.props.onLogin(this.state.credentials)
 	}
 
 	render(){
