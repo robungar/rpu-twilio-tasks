@@ -52501,7 +52501,8 @@
 	
 			_this.state = {
 				message: {
-					text: ''
+					text: '',
+					profile: ''
 				}
 			};
 			return _this;
@@ -52563,6 +52564,9 @@
 			value: function render() {
 				var taskId = this.props.params.id;
 				var task = this.props.tasks[taskId];
+	
+				var messageList = this.props.tasks[this.props.tasks.messages];
+	
 				return _react2.default.createElement(
 					'section',
 					{ style: { paddingTop: 24 } },
@@ -52607,6 +52611,39 @@
 						null,
 						'Replies'
 					),
+					messageList == null ? null : messageList.map(function (task, i) {
+						var username = message.profile.username || 'anonymous';
+	
+						return _react2.default.createElement(
+							'div',
+							{ key: message.id, className: 'box' },
+							_react2.default.createElement(
+								'strong',
+								{ style: localStyle.detailText },
+								_utils.DateUtil.formattedDate(message.timestamp)
+							),
+							_react2.default.createElement(
+								'span',
+								{ style: localStyle.pipe },
+								'|'
+							),
+							_react2.default.createElement(
+								Link,
+								{ to: '/profile/' + message.profile.id },
+								_react2.default.createElement(
+									'span',
+									{ style: localStyle.detailText },
+									username
+								)
+							),
+							_react2.default.createElement(
+								Link,
+								{ to: '/task/' + message.id },
+								message.text
+							),
+							_react2.default.createElement('br', null)
+						);
+					}),
 					this.props.account.user == null ? _react2.default.createElement(
 						'h3',
 						null,
@@ -53234,7 +53271,7 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.profileReducer = exports.accountReducer = exports.taskReducer = undefined;
+	exports.accountReducer = exports.taskReducer = undefined;
 	
 	var _taskReducer = __webpack_require__(413);
 	
@@ -53248,7 +53285,6 @@
 	
 	exports.taskReducer = _taskReducer2.default;
 	exports.accountReducer = _accountReducer2.default;
-	exports.profileReducer = profileReducer;
 
 /***/ },
 /* 413 */

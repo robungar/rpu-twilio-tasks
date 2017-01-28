@@ -8,7 +8,8 @@ class Task extends Component {
 		super()
 		this.state = {
 			message: {
-				text: ''
+				text: '',
+				profile: ''
 			}
 		}
 	}
@@ -67,6 +68,9 @@ class Task extends Component {
 	render(){
 		const taskId = this.props.params.id
 		const task = this.props.tasks[taskId]
+
+		const messageList = this.props.tasks[this.props.tasks.messages]
+
 		return(
 			<section style={{paddingTop:24}}>
 				<header className="major">
@@ -83,8 +87,24 @@ class Task extends Component {
 				</div>
 
 				<h3>Replies</h3>
-				
+				{ (messageList == null) ? null :
+						messageList.map((task, i) => {
+							const username = message.profile.username || 'anonymous'
 
+							return (
+								<div key={message.id} className="box">
+									
+									<strong style={localStyle.detailText}>{DateUtil.formattedDate(message.timestamp)}</strong>
+									<span style={localStyle.pipe}>|</span>
+									<Link to={'/profile/'+message.profile.id}>
+									<span style={localStyle.detailText}>{username}</span>
+									</Link>
+									<Link to={'/task/'+message.id}>{message.text}</Link><br />
+									
+								</div>
+							)
+						})
+					}
 				{
 					(this.props.account.user == null) ? <h3>Please Log in or Register to Reply</h3> : 
 					<div>
