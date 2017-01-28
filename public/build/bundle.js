@@ -52565,7 +52565,7 @@
 				var taskId = this.props.params.id;
 				var task = this.props.tasks[taskId];
 	
-				var messageList = this.props.tasks[this.props.tasks.messages];
+				var messageList = this.props.tasks[this.props.tasks.message];
 	
 				return _react2.default.createElement(
 					'section',

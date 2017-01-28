@@ -69,7 +69,7 @@ class Task extends Component {
 		const taskId = this.props.params.id
 		const task = this.props.tasks[taskId]
 
-		const messageList = this.props.tasks[this.props.tasks.messages]
+		const messageList = this.props.tasks[this.props.tasks.message]
 
 		return(
 			<section style={{paddingTop:24}}>
