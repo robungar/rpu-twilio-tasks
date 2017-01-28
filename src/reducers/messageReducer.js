@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
 		case constants.MESSAGES_RECEIVED:
 			console.log('MESSAGES_RECEIVED: '+JSON.stringify(action.payload))
 
-			let taskId = actions.params.task
+			let taskId = action.params.task
 			updated[taskId] = action.payload
 			console.log('updated:'+JSON.stringify(updated))
 

@@ -15,7 +15,7 @@ class Task extends Component {
 
 	
 	componentDidMount(){
-		 console.log('componentDidMount: '+JSON.stringify(this.props))
+	//	 console.log('componentDidMount: '+JSON.stringify(this.prop(this.props.params.id)))
 		
 		this.props.fetchMessages({task: this.props.params.id})
 	}
@@ -70,7 +70,7 @@ class Task extends Component {
 		const taskId = this.props.params.id
 		const task = this.props.tasks[taskId]
 
-		const messageList = this.props.messages[taskId]
+		const messages = this.props.message[taskId]
 
 		return(
 			<section style={{paddingTop:24}}>
@@ -89,8 +89,8 @@ class Task extends Component {
 
 				<h3>Replies</h3> 
 					<ol>
-						{ (messageList == null) ? <p>No replies</p> :
-							messageList.map((message, i) => {
+						{ (messages == null) ? <p>No replies</p> :
+							messages.map((message, i) => {
 								return <li key={message.id}>{message.text} by {message.profile.username}</li>
 							})
 						}

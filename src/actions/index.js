@@ -5,7 +5,7 @@ const getRequest = (path, params, actionType) => {
 	return (dispatch) => 
 		APIManager.get(path, params)
 		.then(response => {
-
+			console.log('test1')
 			const payload = response.results || response.result || response.user
 
 			dispatch({

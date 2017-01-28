@@ -47417,7 +47417,7 @@
 	var getRequest = function getRequest(path, params, actionType) {
 		return function (dispatch) {
 			return _utils.APIManager.get(path, params).then(function (response) {
-	
+				console.log('test1');
 				var payload = response.results || response.result || response.user;
 	
 				dispatch({
@@ -52494,7 +52494,7 @@
 		_createClass(Task, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
-				console.log('componentDidMount: ' + JSON.stringify(this.props));
+				//	 console.log('componentDidMount: '+JSON.stringify(this.prop(this.props.params.id)))
 	
 				this.props.fetchMessages({ task: this.props.params.id });
 			}
@@ -52550,7 +52550,7 @@
 				var taskId = this.props.params.id;
 				var task = this.props.tasks[taskId];
 	
-				var messageList = this.props.messages[taskId];
+				var messages = this.props.message[taskId];
 	
 				return _react2.default.createElement(
 					'section',
@@ -52599,11 +52599,11 @@
 					_react2.default.createElement(
 						'ol',
 						null,
-						messageList == null ? _react2.default.createElement(
+						messages == null ? _react2.default.createElement(
 							'p',
 							null,
 							'No replies'
-						) : messageList.map(function (message, i) {
+						) : messages.map(function (message, i) {
 							return _react2.default.createElement(
 								'li',
 								{ key: message.id },
@@ -53420,7 +53420,7 @@
 			case _constants2.default.MESSAGES_RECEIVED:
 				console.log('MESSAGES_RECEIVED: ' + JSON.stringify(action.payload));
 	
-				var taskId = actions.params.task;
+				var taskId = action.params.task;
 				updated[taskId] = action.payload;
 				console.log('updated:' + JSON.stringify(updated));
 	
