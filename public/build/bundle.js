@@ -47472,19 +47472,6 @@
 			};
 		},
 	
-		fetchProfile: function fetchProfile(params) {
-			return function (dispatch) {
-				return dispatch(getRequest('/api/profile', params, _constants2.default.PROFILE_RECEIVED));
-			};
-		},
-	
-		profileReceived: function profileReceived(profile) {
-			return {
-				type: _constants2.default.PROFILE_RECEIVED,
-				payload: profile
-			};
-		},
-	
 		fetchTasks: function fetchTasks(params) {
 			return function (dispatch) {
 				return dispatch(getRequest('/api/task', params, _constants2.default.TASKS_RECEIVED));
@@ -47543,7 +47530,7 @@
 	});
 	exports.default = {
 		PROFILE_CREATED: 'PROFILE_CREATED',
-		PROFILE_RECEIVED: 'PROFILE_RECEIVED',
+	
 		USER_LOGGED_IN: 'USER_LOGGED_IN',
 	
 		TASKS_RECEIVED: 'TASKS_RECEIVED',
@@ -53192,8 +53179,7 @@
 		configureStore: function configureStore() {
 			var reducers = (0, _redux.combineReducers)({
 				task: _reducers.taskReducer,
-				account: _reducers.accountReducer,
-				profile: _reducers.profileReducer
+				account: _reducers.accountReducer
 			});
 	
 			store = (0, _redux.createStore)(reducers, (0, _redux.applyMiddleware)(_reduxThunk2.default));
@@ -53253,15 +53239,11 @@
 	
 	var _accountReducer2 = _interopRequireDefault(_accountReducer);
 	
-	var _profileReducer = __webpack_require__(415);
-	
-	var _profileReducer2 = _interopRequireDefault(_profileReducer);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.taskReducer = _taskReducer2.default;
 	exports.accountReducer = _accountReducer2.default;
-	exports.profileReducer = _profileReducer2.default;
+	exports.profileReducer = profileReducer;
 
 /***/ },
 /* 413 */
@@ -53360,43 +53342,6 @@
 			case _constants2.default.USER_LOGGED_IN:
 				console.log('USER_LOGGED_IN:' + JSON.stringify(action.payload));
 				updated['user'] = action.payload;
-				return updated;
-	
-			default:
-				return state;
-		}
-	};
-
-/***/ },
-/* 415 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _constants = __webpack_require__(350);
-	
-	var _constants2 = _interopRequireDefault(_constants);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var initialState = {
-		profile: null
-	};
-	
-	exports.default = function () {
-		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-		var action = arguments[1];
-	
-		var updated = Object.assign({}, state);
-	
-		switch (action.type) {
-			case _constants2.default.PROFILE_RECEIVED:
-				console.log('PROFILE_RECEIVED: ' + JSON.stringify(action.profile));
-				updated['profile'] = action.payload;
 				return updated;
 	
 			default:

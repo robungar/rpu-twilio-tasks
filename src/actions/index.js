@@ -61,18 +61,6 @@ export default {
 		}
 	},
 
-	fetchProfile: (params) => {
-		return (dispatch) => {
-			return dispatch(getRequest('/api/profile', params, constants.PROFILE_RECEIVED))
-		}
-	},
-
-	profileReceived: (profile) => {
-		return {
-			type: constants.PROFILE_RECEIVED,
-			payload: profile
-		}
-	},
 
 	fetchTasks: (params) => {
 		return (dispatch) => {
