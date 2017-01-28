@@ -66,10 +66,11 @@ class Authenticate extends Component {
 
 	login(event){
 //		console.log('login: '+JSON.stringify(this.state.credentials))
-		if(this.state.credentials.username.length == 0){
+		if(this.state.credentials.email.length == 0){
+			console.log('error 1: '+JSON.stringify(this.state.credentials))
 			swal({
 			  title: "Oops!",
-			  text: "You forgot your username!",
+			  text: "You forgot your email address!",
 			  type: "error",
 			})
 

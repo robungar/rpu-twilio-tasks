@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Tasks, Task, Categories, Account } from '../containers'
 
+
 class Home extends Component {
 	render(){
 		return (	

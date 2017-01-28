@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions'
 import { Authenticate } from '../view'
+import { Link } from 'react-router'
 
 
 class Account extends Component {
@@ -39,7 +40,7 @@ class Account extends Component {
 			<div style={{padding: 24}}>
 				<h2>Account</h2>
 				{ (this.props.user == null) ? <Authenticate onLogin={this.login.bind(this)} onRegister={this.register.bind(this)} /> :
-					<h2> Hello {this.props.user.username}</h2>
+					<h2> Hello <Link to={'/profile/'+this.props.user.id}>{this.props.user.username}</Link></h2>
 				}
 
 			</div>

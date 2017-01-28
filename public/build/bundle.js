@@ -58,7 +58,7 @@
 	
 	var _reactRedux = __webpack_require__(312);
 	
-	var _stores = __webpack_require__(408);
+	var _stores = __webpack_require__(410);
 	
 	var _stores2 = _interopRequireDefault(_stores);
 	
@@ -82,7 +82,8 @@
 			_reactRouter.Router,
 			{ history: _reactRouter.browserHistory },
 			_react2.default.createElement(_reactRouter.Route, { path: '/', component: _layout.Home }),
-			_react2.default.createElement(_reactRouter.Route, { path: '/task/:id', component: _layout.Split })
+			_react2.default.createElement(_reactRouter.Route, { path: '/task/:id', component: _layout.Split }),
+			_react2.default.createElement(_reactRouter.Route, { path: '/profile/:id', component: _layout.ProfileLayout })
 		)
 	);
 	
@@ -21524,20 +21525,25 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.Split = exports.Home = undefined;
+	exports.ProfileLayout = exports.Split = exports.Home = undefined;
 	
 	var _Home = __webpack_require__(179);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
-	var _Split = __webpack_require__(407);
+	var _Split = __webpack_require__(408);
 	
 	var _Split2 = _interopRequireDefault(_Split);
+	
+	var _ProfileLayout = __webpack_require__(409);
+	
+	var _ProfileLayout2 = _interopRequireDefault(_ProfileLayout);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.Home = _Home2.default;
 	exports.Split = _Split2.default;
+	exports.ProfileLayout = _ProfileLayout2.default;
 
 /***/ },
 /* 179 */
@@ -21695,7 +21701,7 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.Account = exports.Categories = exports.Task = exports.Tasks = undefined;
+	exports.Profile = exports.Account = exports.Categories = exports.Task = exports.Tasks = undefined;
 	
 	var _Tasks = __webpack_require__(181);
 	
@@ -21713,12 +21719,17 @@
 	
 	var _Account2 = _interopRequireDefault(_Account);
 	
+	var _Profile = __webpack_require__(407);
+	
+	var _Profile2 = _interopRequireDefault(_Profile);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.Tasks = _Tasks2.default;
 	exports.Task = _Task2.default;
 	exports.Categories = _Categories2.default;
 	exports.Account = _Account2.default;
+	exports.Profile = _Profile2.default;
 
 /***/ },
 /* 181 */
@@ -45102,10 +45113,11 @@
 			key: 'login',
 			value: function login(event) {
 				//		console.log('login: '+JSON.stringify(this.state.credentials))
-				if (this.state.credentials.username.length == 0) {
+				if (this.state.credentials.email.length == 0) {
+					console.log('error 1: ' + JSON.stringify(this.state.credentials));
 					swal({
 						title: "Oops!",
-						text: "You forgot your username!",
+						text: "You forgot your email address!",
 						type: "error"
 					});
 	
@@ -47456,6 +47468,19 @@
 			};
 		},
 	
+		fetchProfile: function fetchProfile(params) {
+			return function (dispatch) {
+				return dispatch(getRequest('/api/profile', params, _constants2.default.PROFILE_RECEIVED));
+			};
+		},
+	
+		profileReceived: function profileReceived(profile) {
+			return {
+				type: _constants2.default.PROFILE_RECEIVED,
+				payload: profile
+			};
+		},
+	
 		fetchTasks: function fetchTasks(params) {
 			return function (dispatch) {
 				return dispatch(getRequest('/api/task', params, _constants2.default.TASKS_RECEIVED));
@@ -47513,8 +47538,8 @@
 		value: true
 	});
 	exports.default = {
-	
 		PROFILE_CREATED: 'PROFILE_CREATED',
+		PROFILE_RECEIVED: 'PROFILE_RECEIVED',
 		USER_LOGGED_IN: 'USER_LOGGED_IN',
 	
 		TASKS_RECEIVED: 'TASKS_RECEIVED',
@@ -47523,7 +47548,6 @@
 		CATEGORY_SELECTED: 'CATEGORY_SELECTED',
 	
 		MESSAGE_CREATED: 'MESSAGE_CREATED'
-	
 	};
 
 /***/ },
@@ -52793,6 +52817,8 @@
 	
 	var _view = __webpack_require__(309);
 	
+	var _reactRouter = __webpack_require__(351);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -52847,7 +52873,11 @@
 						'h2',
 						null,
 						' Hello ',
-						this.props.user.username
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/profile/' + this.props.user.id },
+							this.props.user.username
+						)
 					)
 				);
 			}
@@ -52880,6 +52910,95 @@
 
 /***/ },
 /* 407 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(312);
+	
+	var _actions = __webpack_require__(349);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Profile = function (_Component) {
+		_inherits(Profile, _Component);
+	
+		function Profile() {
+			_classCallCheck(this, Profile);
+	
+			return _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).apply(this, arguments));
+		}
+	
+		_createClass(Profile, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				console.log('ID: ' + JSON.stringify(this.props.profile));
+				//this.props.profileReceived(response.results)
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'h2',
+						null,
+						'Profile Container'
+					),
+					_react2.default.createElement(
+						'h3',
+						null,
+						this.props.profile.username
+					),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						'h3',
+						null,
+						this.props.profile.email
+					),
+					_react2.default.createElement('br', null)
+				);
+			}
+		}]);
+	
+		return Profile;
+	}(_react.Component);
+	
+	var stateToProps = function stateToProps(state) {
+		return {
+			profile: state.account.user
+		};
+	};
+	
+	var dispatchToProps = function dispatchToProps(dispatch) {
+		return {
+			profileReceived: function profileReceived(profile) {
+				return dispatch(_actions.actions.profileReceived(profile));
+			}
+		};
+	};
+	
+	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Profile);
+
+/***/ },
+/* 408 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53001,7 +53120,58 @@
 	};
 
 /***/ },
-/* 408 */
+/* 409 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _containers = __webpack_require__(180);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ProfileLayout = function (_Component) {
+		_inherits(ProfileLayout, _Component);
+	
+		function ProfileLayout() {
+			_classCallCheck(this, ProfileLayout);
+	
+			return _possibleConstructorReturn(this, (ProfileLayout.__proto__ || Object.getPrototypeOf(ProfileLayout)).apply(this, arguments));
+		}
+	
+		_createClass(ProfileLayout, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(_containers.Profile, null)
+				);
+			}
+		}]);
+	
+		return ProfileLayout;
+	}(_react.Component);
+	
+	exports.default = ProfileLayout;
+
+/***/ },
+/* 410 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53012,11 +53182,11 @@
 	
 	var _redux = __webpack_require__(323);
 	
-	var _reduxThunk = __webpack_require__(409);
+	var _reduxThunk = __webpack_require__(411);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _reducers = __webpack_require__(410);
+	var _reducers = __webpack_require__(412);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -53026,7 +53196,8 @@
 		configureStore: function configureStore() {
 			var reducers = (0, _redux.combineReducers)({
 				task: _reducers.taskReducer,
-				account: _reducers.accountReducer
+				account: _reducers.accountReducer,
+				profile: _reducers.profileReducer
 			});
 	
 			store = (0, _redux.createStore)(reducers, (0, _redux.applyMiddleware)(_reduxThunk2.default));
@@ -53040,7 +53211,7 @@
 	};
 
 /***/ },
-/* 409 */
+/* 411 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -53068,7 +53239,7 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 410 */
+/* 412 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53076,23 +53247,28 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.accountReducer = exports.taskReducer = undefined;
+	exports.profileReducer = exports.accountReducer = exports.taskReducer = undefined;
 	
-	var _taskReducer = __webpack_require__(411);
+	var _taskReducer = __webpack_require__(413);
 	
 	var _taskReducer2 = _interopRequireDefault(_taskReducer);
 	
-	var _accountReducer = __webpack_require__(412);
+	var _accountReducer = __webpack_require__(414);
 	
 	var _accountReducer2 = _interopRequireDefault(_accountReducer);
+	
+	var _profileReducer = __webpack_require__(415);
+	
+	var _profileReducer2 = _interopRequireDefault(_profileReducer);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.taskReducer = _taskReducer2.default;
 	exports.accountReducer = _accountReducer2.default;
+	exports.profileReducer = _profileReducer2.default;
 
 /***/ },
-/* 411 */
+/* 413 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53153,7 +53329,7 @@
 	};
 
 /***/ },
-/* 412 */
+/* 414 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53188,6 +53364,43 @@
 			case _constants2.default.USER_LOGGED_IN:
 				console.log('USER_LOGGED_IN:' + JSON.stringify(action.payload));
 				updated['user'] = action.payload;
+				return updated;
+	
+			default:
+				return state;
+		}
+	};
+
+/***/ },
+/* 415 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _constants = __webpack_require__(350);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var initialState = {
+		profile: null
+	};
+	
+	exports.default = function () {
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+		var action = arguments[1];
+	
+		var updated = Object.assign({}, state);
+	
+		switch (action.type) {
+			case _constants2.default.PROFILE_RECEIVED:
+				console.log('PROFILE_RECEIVED: ' + JSON.stringify(action.profile));
+				updated['profile'] = action.payload;
 				return updated;
 	
 			default:
