@@ -19,6 +19,7 @@ class Home extends Component {
 								</ul>
 							</header>
 							<Tasks />
+							<Account />
 					</div>
 				</div>		
 				<div id="sidebar">

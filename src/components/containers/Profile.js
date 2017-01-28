@@ -25,10 +25,6 @@ const stateToProps = (state) => {
 	}
 }
 
-const dispatchToProps = (dispatch) => {
-	return {
-		profileReceived: (profile) => dispatch(actions.profileReceived(profile))
-	}
-}
+
 
 export default connect(stateToProps, dispatchToProps)(Profile)

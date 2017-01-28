@@ -19,8 +19,8 @@ class Account extends Component {
 		})
 	}
 
-	login(credentials){
-		console.log('login: '+JSON.stringify(credentials))
+	authenticate(credentials){
+		console.log('authenticate: '+JSON.stringify(credentials))
 		this.props.login(credentials)
 		.then(response => {
 
@@ -39,7 +39,7 @@ class Account extends Component {
 		return (
 			<div style={{padding: 24}}>
 				<h2>Account</h2>
-				{ (this.props.user == null) ? <Authenticate onLogin={this.login.bind(this)} onRegister={this.register.bind(this)} /> :
+				{ (this.props.user == null) ? <Authenticate onLogin={this.authenticate.bind(this)} onRegister={this.register.bind(this)} /> :
 					<h2> Hello <Link to={'/profile/'+this.props.user.id}>{this.props.user.username}</Link></h2>
 				}
 

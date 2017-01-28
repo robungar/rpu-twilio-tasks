@@ -56,7 +56,9 @@ class Tasks extends Component {
 									<Link to={'/task/'+task.id}><h3>{task.title}</h3></Link>
 									<strong style={localStyle.detailText}>{DateUtil.formattedDate(task.timestamp)}</strong>
 									<span style={localStyle.pipe}>|</span>
+									<Link to={'/profile/'+task.profile.id}>
 									<span style={localStyle.detailText}>{username}</span>
+									</Link>
 									<Link to={'/task/'+task.id}>{task.description}</Link><br />
 									
 								</div>
@@ -64,7 +66,6 @@ class Tasks extends Component {
 						})
 					}
 				</div>
-				<Authenticate />
 			</section>
 		)
 	}

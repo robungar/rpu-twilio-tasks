@@ -21675,7 +21675,8 @@
 									)
 								)
 							),
-							_react2.default.createElement(_containers.Tasks, null)
+							_react2.default.createElement(_containers.Tasks, null),
+							_react2.default.createElement(_containers.Account, null)
 						)
 					),
 					_react2.default.createElement(
@@ -21851,9 +21852,13 @@
 									'|'
 								),
 								_react2.default.createElement(
-									'span',
-									{ style: localStyle.detailText },
-									username
+									_reactRouter.Link,
+									{ to: '/profile/' + task.profile.id },
+									_react2.default.createElement(
+										'span',
+										{ style: localStyle.detailText },
+										username
+									)
 								),
 								_react2.default.createElement(
 									_reactRouter.Link,
@@ -21863,8 +21868,7 @@
 								_react2.default.createElement('br', null)
 							);
 						})
-					),
-					_react2.default.createElement(_view.Authenticate, null)
+					)
 				);
 			}
 		}]);
@@ -52845,9 +52849,9 @@
 				});
 			}
 		}, {
-			key: 'login',
-			value: function login(credentials) {
-				console.log('login: ' + JSON.stringify(credentials));
+			key: 'authenticate',
+			value: function authenticate(credentials) {
+				console.log('authenticate: ' + JSON.stringify(credentials));
 				this.props.login(credentials).then(function (response) {}).catch(function (err) {
 					alert(err.message);
 				});
@@ -52869,7 +52873,7 @@
 						null,
 						'Account'
 					),
-					this.props.user == null ? _react2.default.createElement(_view.Authenticate, { onLogin: this.login.bind(this), onRegister: this.register.bind(this) }) : _react2.default.createElement(
+					this.props.user == null ? _react2.default.createElement(_view.Authenticate, { onLogin: this.authenticate.bind(this), onRegister: this.register.bind(this) }) : _react2.default.createElement(
 						'h2',
 						null,
 						' Hello ',
@@ -52984,14 +52988,6 @@
 	var stateToProps = function stateToProps(state) {
 		return {
 			profile: state.account.user
-		};
-	};
-	
-	var dispatchToProps = function dispatchToProps(dispatch) {
-		return {
-			profileReceived: function profileReceived(profile) {
-				return dispatch(_actions.actions.profileReceived(profile));
-			}
 		};
 	};
 	
