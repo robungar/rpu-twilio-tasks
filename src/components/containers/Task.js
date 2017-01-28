@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions'
 import { TextUtil, DateUtil } from '../../utils'
-import { Link } from 'react-redux'
+import { Link } from 'react-router'
 
 class Task extends Component {
 	constructor(){

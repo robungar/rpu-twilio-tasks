@@ -47415,6 +47415,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var getRequest = function getRequest(path, params, actionType) {
+		console.log('Hi');
 		return function (dispatch) {
 			return _utils.APIManager.get(path, params).then(function (response) {
 	
@@ -47425,6 +47426,7 @@
 					payload: payload,
 					params: params
 				});
+	
 				return response;
 			}).catch(function (err) {
 	
@@ -52467,6 +52469,8 @@
 	
 	var _utils = __webpack_require__(182);
 	
+	var _reactRouter = __webpack_require__(350);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -52610,7 +52614,7 @@
 								message.text,
 								' by ',
 								_react2.default.createElement(
-									_reactRedux.Link,
+									_reactRouter.Link,
 									{ to: '/profile/' + message.profile.id },
 									message.profile.username
 								)
