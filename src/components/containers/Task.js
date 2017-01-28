@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions'
 import { TextUtil, DateUtil } from '../../utils'
+import { Link } from 'react-redux'
 
 class Task extends Component {
 	constructor(){
@@ -91,7 +92,7 @@ class Task extends Component {
 					<ol>
 						{ (messages == null) ? <p>No replies</p> :
 							messages.map((message, i) => {
-								return <li key={message.id}>{message.text} by {message.profile.username}</li>
+								return <li key={message.id}>{message.text} by <Link to={'/profile/'+message.profile.id}>{message.profile.username}</Link></li>
 							})
 						}
 					</ol>

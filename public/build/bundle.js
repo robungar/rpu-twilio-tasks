@@ -47417,7 +47417,7 @@
 	var getRequest = function getRequest(path, params, actionType) {
 		return function (dispatch) {
 			return _utils.APIManager.get(path, params).then(function (response) {
-				console.log('test1');
+	
 				var payload = response.results || response.result || response.user;
 	
 				dispatch({
@@ -52609,7 +52609,11 @@
 								{ key: message.id },
 								message.text,
 								' by ',
-								message.profile.username
+								_react2.default.createElement(
+									_reactRedux.Link,
+									{ to: '/profile/' + message.profile.id },
+									message.profile.username
+								)
 							);
 						})
 					),
