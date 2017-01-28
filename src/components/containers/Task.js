@@ -8,8 +8,7 @@ class Task extends Component {
 		super()
 		this.state = {
 			message: {
-				text: '',
-				profile: ''
+				text: ''
 			}
 		}
 	}
@@ -17,6 +16,8 @@ class Task extends Component {
 	
 	componentDidMount(){
 		 console.log('componentDidMount: '+JSON.stringify(this.props))
+		
+		this.props.fetchMessages({task: this.props.params.id})
 	}
 
 	updateMessage(event){
@@ -69,7 +70,7 @@ class Task extends Component {
 		const taskId = this.props.params.id
 		const task = this.props.tasks[taskId]
 
-		const messageList = this.props.tasks[this.props.tasks.message]
+		const messageList = this.props.messages[taskId]
 
 		return(
 			<section style={{paddingTop:24}}>
@@ -86,25 +87,14 @@ class Task extends Component {
 					</article>
 				</div>
 
-				<h3>Replies</h3>
-				{ (messageList == null) ? null :
-						messageList.map((task, i) => {
-							const username = message.profile.username || 'anonymous'
-
-							return (
-								<div key={message.id} className="box">
-									
-									<strong style={localStyle.detailText}>{DateUtil.formattedDate(message.timestamp)}</strong>
-									<span style={localStyle.pipe}>|</span>
-									<Link to={'/profile/'+message.profile.id}>
-									<span style={localStyle.detailText}>{username}</span>
-									</Link>
-									<Link to={'/task/'+message.id}>{message.text}</Link><br />
-									
-								</div>
-							)
-						})
-					}
+				<h3>Replies</h3> 
+					<ol>
+						{ (messageList == null) ? <p>No replies</p> :
+							messageList.map((message, i) => {
+								return <li key={message.id}>{message.text} by {message.profile.username}</li>
+							})
+						}
+					</ol>
 				{
 					(this.props.account.user == null) ? <h3>Please Log in or Register to Reply</h3> : 
 					<div>
@@ -121,14 +111,16 @@ class Task extends Component {
 const stateToProps = (state) => {
 	return {
 		tasks: state.task,
-		account: state.account
+		account: state.account,
+		message: state.message
 	}
 }
 
 const dispatchToProps = (dispatch) => {
 	return {
 		submitMessage: (params) => dispatch(actions.submitMessage(params)),
-		notify: (params) => dispatch(actions.notify(params))
+		notify: (params) => dispatch(actions.notify(params)),
+		fetchMessages: (params) => dispatch(actions.fetchMessages(params))
 	}
 }
 
