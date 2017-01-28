@@ -8,7 +8,7 @@ import { Link } from 'react-router'
 class Account extends Component {
 
 	componentDidMount(){
-		if (this.props.user == !null)
+		if (this.props.user != null)
 			return
 		this.props.checkCurrentUser()
 		.then(response => {
