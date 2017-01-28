@@ -81,6 +81,10 @@ class Task extends Component {
 						<p>{task.description}</p>
 					</article>
 				</div>
+
+				<h3>Replies</h3>
+				
+
 				{
 					(this.props.account.user == null) ? <h3>Please Log in or Register to Reply</h3> : 
 					<div>

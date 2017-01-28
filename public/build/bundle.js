@@ -52602,6 +52602,11 @@
 							)
 						)
 					),
+					_react2.default.createElement(
+						'h3',
+						null,
+						'Replies'
+					),
 					this.props.account.user == null ? _react2.default.createElement(
 						'h3',
 						null,
@@ -52978,7 +52983,7 @@
 		};
 	};
 	
-	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Profile);
+	exports.default = (0, _reactRedux.connect)(stateToProps)(Profile);
 
 /***/ },
 /* 408 */

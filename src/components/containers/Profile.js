@@ -27,4 +27,4 @@ const stateToProps = (state) => {
 
 
 
-export default connect(stateToProps, dispatchToProps)(Profile)
+export default connect(stateToProps)(Profile)
