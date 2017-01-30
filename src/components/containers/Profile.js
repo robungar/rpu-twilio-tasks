@@ -4,10 +4,12 @@ import { actions } from '../../actions'
 
 class Profile extends Component {
 	componentDidMount(){
-	//	console.log('ID: '+JSON.stringify(this.props.profile))
-		//this.props.profileReceived(response.results)
+	console.log('PROFILE: '+JSON.stringify(this.props.profile))
+	console.log('MESSAGE: '+JSON.stringify(this.props.message))
 
 	console.log('PARAMS: '+JSON.stringify(this.props.params))
+
+	this.props.fetchProfile(id)
 
 	}
 
@@ -25,10 +27,15 @@ class Profile extends Component {
 const stateToProps = (state) => {
 	return {
 		message: state.message,
-		profile: state.account.user
+		profile: state.account.user //always logged in person, not profile
+	}
+}
+
+const dispatchToProps = (dispatch) => {
+	return {
+		fetchProfile: (id) => dispatch(actions.fetchProfile(id))
 	}
 }
 
 
-
-export default connect(stateToProps)(Profile)
+export default connect(stateToProps, dispatchToProps)(Profile)

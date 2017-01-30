@@ -21754,7 +21754,7 @@
 	
 	var _reactRedux = __webpack_require__(312);
 	
-	var _actions = __webpack_require__(349);
+	var _actions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -47397,137 +47397,7 @@
 	}
 
 /***/ },
-/* 349 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _constants = __webpack_require__(350);
-	
-	var _constants2 = _interopRequireDefault(_constants);
-	
-	var _utils = __webpack_require__(182);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var getRequest = function getRequest(path, params, actionType) {
-		console.log('Hi');
-		return function (dispatch) {
-			return _utils.APIManager.get(path, params).then(function (response) {
-	
-				var payload = response.results || response.result || response.user;
-	
-				dispatch({
-					type: actionType,
-					payload: payload,
-					params: params
-				});
-	
-				return response;
-			}).catch(function (err) {
-	
-				throw err;
-			});
-		};
-	};
-	
-	var postRequest = function postRequest(path, params, actionType) {
-		return function (dispatch) {
-			return _utils.APIManager.post(path, params).then(function (response) {
-				//			console.log('POST: '+JSON.stringify(response))
-				var payload = response.results || response.result || response.user;
-	
-				dispatch({
-					type: actionType,
-					payload: payload,
-					params: params
-				});
-				return response;
-			}).catch(function (err) {
-				//			console.log('ERR: '+JSON.stringify(err.message))
-				throw err;
-			});
-		};
-	};
-	
-	exports.default = {
-	
-		register: function register(credentials) {
-			return function (dispatch) {
-				return dispatch(postRequest('/account/register', credentials, _constants2.default.PROFILE_CREATED));
-			};
-		},
-	
-		login: function login(credentials) {
-			return function (dispatch) {
-				return dispatch(postRequest('/account/login', credentials, _constants2.default.USER_LOGGED_IN));
-			};
-		},
-	
-		checkCurrentUser: function checkCurrentUser() {
-			return function (dispatch) {
-				return dispatch(getRequest('/account/currentuser', {}, _constants2.default.USER_LOGGED_IN));
-			};
-		},
-	
-		fetchTasks: function fetchTasks(params) {
-			return function (dispatch) {
-				return dispatch(getRequest('/api/task', params, _constants2.default.TASKS_RECEIVED));
-			};
-		},
-	
-		tasksReceived: function tasksReceived(tasks) {
-			return {
-				type: _constants2.default.TASKS_RECEIVED,
-				payload: tasks
-			};
-		},
-	
-		submitTask: function submitTask(params) {
-			return function (dispatch) {
-				return dispatch(postRequest('/api/task', params, _constants2.default.TASK_CREATED));
-			};
-		},
-	
-		submitMessage: function submitMessage(params) {
-			return function (dispatch) {
-				return dispatch(postRequest('/api/message', params, _constants2.default.MESSAGE_CREATED));
-			};
-		},
-	
-		fetchMessages: function fetchMessages(params) {
-			return function (dispatch) {
-				return dispatch(getRequest('/api/message', params, _constants2.default.MESSAGES_RECEIVED));
-			};
-		},
-	
-		selectCategory: function selectCategory(category) {
-			return {
-				type: _constants2.default.CATEGORY_SELECTED,
-				payload: category
-			};
-		},
-	
-		notify: function notify(params) {
-			return function (dispatch) {
-				return dispatch(postRequest('/twilio/notify', params, null));
-			};
-		}
-	
-		// taskCreated: (task) => {
-		// 	return {
-		// 		type: constants.TASK_CREATED,
-		// 		payload: task
-		// 	}
-		// }
-	
-	};
-
-/***/ },
+/* 349 */,
 /* 350 */
 /***/ function(module, exports) {
 
@@ -47538,6 +47408,7 @@
 	});
 	exports.default = {
 		PROFILE_CREATED: 'PROFILE_CREATED',
+		PROFILE_RECEIVED: 'PROFILE_RECEIVED',
 	
 		USER_LOGGED_IN: 'USER_LOGGED_IN',
 	
@@ -52486,7 +52357,7 @@
 	
 	var _reactRedux = __webpack_require__(312);
 	
-	var _actions = __webpack_require__(349);
+	var _actions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -52713,7 +52584,7 @@
 	
 	var _reactRedux = __webpack_require__(312);
 	
-	var _actions = __webpack_require__(349);
+	var _actions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -52848,7 +52719,7 @@
 	
 	var _reactRedux = __webpack_require__(312);
 	
-	var _actions = __webpack_require__(349);
+	var _actions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -52963,7 +52834,7 @@
 	
 	var _reactRedux = __webpack_require__(312);
 	
-	var _actions = __webpack_require__(349);
+	var _actions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -52985,10 +52856,12 @@
 		_createClass(Profile, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
-				//	console.log('ID: '+JSON.stringify(this.props.profile))
-				//this.props.profileReceived(response.results)
+				console.log('PROFILE: ' + JSON.stringify(this.props.profile));
+				console.log('MESSAGE: ' + JSON.stringify(this.props.message));
 	
 				console.log('PARAMS: ' + JSON.stringify(this.props.params));
+	
+				this.props.fetchProfile(id);
 			}
 		}, {
 			key: 'render',
@@ -53023,11 +52896,19 @@
 	var stateToProps = function stateToProps(state) {
 		return {
 			message: state.message,
-			profile: state.account.user
+			profile: state.account.user //always logged in person, not profile
 		};
 	};
 	
-	exports.default = (0, _reactRedux.connect)(stateToProps)(Profile);
+	var dispatchToProps = function dispatchToProps(dispatch) {
+		return {
+			fetchProfile: function fetchProfile(id) {
+				return dispatch(_actions.actions.fetchProfile(id));
+			}
+		};
+	};
+	
+	exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Profile);
 
 /***/ },
 /* 408 */
@@ -53229,7 +53110,8 @@
 			var reducers = (0, _redux.combineReducers)({
 				task: _reducers.taskReducer,
 				account: _reducers.accountReducer,
-				message: _reducers.messageReducer
+				message: _reducers.messageReducer,
+				profile: _reducers.profileReducer
 			});
 	
 			store = (0, _redux.createStore)(reducers, (0, _redux.applyMiddleware)(_reduxThunk2.default));
@@ -53279,7 +53161,7 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.messageReducer = exports.accountReducer = exports.taskReducer = undefined;
+	exports.profileReducer = exports.messageReducer = exports.accountReducer = exports.taskReducer = undefined;
 	
 	var _taskReducer = __webpack_require__(413);
 	
@@ -53293,11 +53175,16 @@
 	
 	var _messageReducer2 = _interopRequireDefault(_messageReducer);
 	
+	var _profileReducer = __webpack_require__(416);
+	
+	var _profileReducer2 = _interopRequireDefault(_profileReducer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.taskReducer = _taskReducer2.default;
 	exports.accountReducer = _accountReducer2.default;
 	exports.messageReducer = _messageReducer2.default;
+	exports.profileReducer = _profileReducer2.default;
 
 /***/ },
 /* 413 */
@@ -53434,6 +53321,41 @@
 				var taskId = action.params.task;
 				updated[taskId] = action.payload;
 				console.log('updated:' + JSON.stringify(updated));
+	
+				return updated;
+	
+			default:
+				return state;
+		}
+	};
+
+/***/ },
+/* 416 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _constants = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../constants\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var initialState = {};
+	
+	exports.default = function () {
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+		var action = arguments[1];
+	
+		var updated = Object.assign({}, initialState);
+	
+		switch (action.type) {
+			case _constants2.default.PROFILE_RECEIVED:
+				console.log('PROFILE_RECEIVED: ' + JSON.stringify(action.payload));
 	
 				return updated;
 	
