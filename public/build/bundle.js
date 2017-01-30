@@ -52997,6 +52997,9 @@
 	
 				console.log('PARAMS: ' + JSON.stringify(this.props.params));
 	
+				var id = this.props.params.id;
+				if (this.props.profiles[id] != null) return;
+	
 				this.props.fetchProfile(id);
 			}
 		}, {

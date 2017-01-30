@@ -9,6 +9,10 @@ class Profile extends Component {
 
 	console.log('PARAMS: '+JSON.stringify(this.props.params))
 
+	const id = this.props.params.id
+	if (this.props.profiles[id] != null)
+		return
+
 	this.props.fetchProfile(id)
 
 	}
