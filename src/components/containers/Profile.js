@@ -14,20 +14,29 @@ class Profile extends Component {
 	}
 
 	render(){
-		return(
-			<div>
-				<h2>Profile Container</h2>
-				<h3>{this.props.profile.username}</h3><br />
-				<h3>{this.props.profile.email}</h3><br />
-			</div>
-		)
+		let profile = this.props.profiles
+		if (profile == null)
+			return (<div>Not found</div>) 
+		else if (profile[this.props.params.id] == null)
+			return (<div>Not found</div>)
+		else {
+			profile = profile[this.props.params.id]
+
+			return(
+				<div>
+					<h2>Profile Container</h2>
+					<h3>{this.props.profile.username}</h3><br />
+					<h3>{this.props.profile.email}</h3><br />
+				</div>
+			)
+		}
 	}
 }
 
 const stateToProps = (state) => {
 	return {
-		message: state.message,
-		profile: state.account.user //always logged in person, not profile
+		
+		profile: state.profile //always logged in person, not profile
 	}
 }
 

@@ -53002,27 +53002,40 @@
 		}, {
 			key: 'render',
 			value: function render() {
-				return _react2.default.createElement(
+				var profile = this.props.profiles;
+				if (profile == null) return _react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement(
-						'h2',
+					'Not found'
+				);else if (profile[this.props.params.id] == null) return _react2.default.createElement(
+					'div',
+					null,
+					'Not found'
+				);else {
+					profile = profile[this.props.params.id];
+	
+					return _react2.default.createElement(
+						'div',
 						null,
-						'Profile Container'
-					),
-					_react2.default.createElement(
-						'h3',
-						null,
-						this.props.profile.username
-					),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement(
-						'h3',
-						null,
-						this.props.profile.email
-					),
-					_react2.default.createElement('br', null)
-				);
+						_react2.default.createElement(
+							'h2',
+							null,
+							'Profile Container'
+						),
+						_react2.default.createElement(
+							'h3',
+							null,
+							this.props.profile.username
+						),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'h3',
+							null,
+							this.props.profile.email
+						),
+						_react2.default.createElement('br', null)
+					);
+				}
 			}
 		}]);
 	
@@ -53031,8 +53044,8 @@
 	
 	var stateToProps = function stateToProps(state) {
 		return {
-			message: state.message,
-			profile: state.account.user //always logged in person, not profile
+	
+			profile: state.profile //always logged in person, not profile
 		};
 	};
 	
@@ -53475,7 +53488,7 @@
 		value: true
 	});
 	
-	var _constants = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../constants\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _constants = __webpack_require__(350);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
@@ -53492,6 +53505,9 @@
 		switch (action.type) {
 			case _constants2.default.PROFILE_RECEIVED:
 				console.log('PROFILE_RECEIVED: ' + JSON.stringify(action.payload));
+	
+				var profile = action.payload;
+				updated[profile.id] = profile;
 	
 				return updated;
 	
