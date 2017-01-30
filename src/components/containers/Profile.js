@@ -24,6 +24,7 @@ class Profile extends Component {
 
 const stateToProps = (state) => {
 	return {
+		message: state.message,
 		profile: state.account.user
 	}
 }

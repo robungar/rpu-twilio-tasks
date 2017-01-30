@@ -53022,6 +53022,7 @@
 	
 	var stateToProps = function stateToProps(state) {
 		return {
+			message: state.message,
 			profile: state.account.user
 		};
 	};
