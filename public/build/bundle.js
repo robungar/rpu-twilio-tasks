@@ -21754,7 +21754,7 @@
 	
 	var _reactRedux = __webpack_require__(312);
 	
-	var _actions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _actions = __webpack_require__(349);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -47397,7 +47397,143 @@
 	}
 
 /***/ },
-/* 349 */,
+/* 349 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _constants = __webpack_require__(350);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	var _utils = __webpack_require__(182);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var getRequest = function getRequest(path, params, actionType) {
+		console.log('Hi');
+		return function (dispatch) {
+			return _utils.APIManager.get(path, params).then(function (response) {
+	
+				var payload = response.results || response.result || response.user;
+	
+				dispatch({
+					type: actionType,
+					payload: payload,
+					params: params
+				});
+	
+				return response;
+			}).catch(function (err) {
+	
+				throw err;
+			});
+		};
+	};
+	
+	var postRequest = function postRequest(path, params, actionType) {
+		return function (dispatch) {
+			return _utils.APIManager.post(path, params).then(function (response) {
+				//			console.log('POST: '+JSON.stringify(response))
+				var payload = response.results || response.result || response.user;
+	
+				dispatch({
+					type: actionType,
+					payload: payload,
+					params: params
+				});
+				return response;
+			}).catch(function (err) {
+				//			console.log('ERR: '+JSON.stringify(err.message))
+				throw err;
+			});
+		};
+	};
+	
+	exports.default = {
+	
+		register: function register(credentials) {
+			return function (dispatch) {
+				return dispatch(postRequest('/account/register', credentials, _constants2.default.PROFILE_CREATED));
+			};
+		},
+	
+		login: function login(credentials) {
+			return function (dispatch) {
+				return dispatch(postRequest('/account/login', credentials, _constants2.default.USER_LOGGED_IN));
+			};
+		},
+	
+		checkCurrentUser: function checkCurrentUser() {
+			return function (dispatch) {
+				return dispatch(getRequest('/account/currentuser', {}, _constants2.default.USER_LOGGED_IN));
+			};
+		},
+	
+		fetchProfile: function fetchProfile(id) {
+			return function (dispatch) {
+				return dispatch(getRequest('/api/profile/' + id, null, _constants2.default.PROFILE_RECEIVED));
+			};
+		},
+	
+		fetchTasks: function fetchTasks(params) {
+			return function (dispatch) {
+				return dispatch(getRequest('/api/task', params, _constants2.default.TASKS_RECEIVED));
+			};
+		},
+	
+		tasksReceived: function tasksReceived(tasks) {
+			return {
+				type: _constants2.default.TASKS_RECEIVED,
+				payload: tasks
+			};
+		},
+	
+		submitTask: function submitTask(params) {
+			return function (dispatch) {
+				return dispatch(postRequest('/api/task', params, _constants2.default.TASK_CREATED));
+			};
+		},
+	
+		submitMessage: function submitMessage(params) {
+			return function (dispatch) {
+				return dispatch(postRequest('/api/message', params, _constants2.default.MESSAGE_CREATED));
+			};
+		},
+	
+		fetchMessages: function fetchMessages(params) {
+			return function (dispatch) {
+				return dispatch(getRequest('/api/message', params, _constants2.default.MESSAGES_RECEIVED));
+			};
+		},
+	
+		selectCategory: function selectCategory(category) {
+			return {
+				type: _constants2.default.CATEGORY_SELECTED,
+				payload: category
+			};
+		},
+	
+		notify: function notify(params) {
+			return function (dispatch) {
+				return dispatch(postRequest('/twilio/notify', params, null));
+			};
+		}
+	
+		// taskCreated: (task) => {
+		// 	return {
+		// 		type: constants.TASK_CREATED,
+		// 		payload: task
+		// 	}
+		// }
+	
+	};
+
+/***/ },
 /* 350 */
 /***/ function(module, exports) {
 
@@ -52357,7 +52493,7 @@
 	
 	var _reactRedux = __webpack_require__(312);
 	
-	var _actions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _actions = __webpack_require__(349);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -52584,7 +52720,7 @@
 	
 	var _reactRedux = __webpack_require__(312);
 	
-	var _actions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _actions = __webpack_require__(349);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -52719,7 +52855,7 @@
 	
 	var _reactRedux = __webpack_require__(312);
 	
-	var _actions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _actions = __webpack_require__(349);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -52834,7 +52970,7 @@
 	
 	var _reactRedux = __webpack_require__(312);
 	
-	var _actions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _actions = __webpack_require__(349);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
