@@ -13,7 +13,6 @@ class Profile extends Component {
 	if (this.props.profiles[id] != null)
 		return
 
-	
 	this.props.fetchProfile(id)
 	
 
