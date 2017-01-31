@@ -53002,47 +53002,38 @@
 				var id = this.props.params.id;
 				if (this.props.profiles[id] != null) return;
 	
-				console.log('TEST!');
 				this.props.fetchProfile(id);
-				console.log('TEST 2');
 			}
 		}, {
 			key: 'render',
 			value: function render() {
-				var profile = this.props.profiles;
-				if (profile == null) return _react2.default.createElement(
-					'div',
-					null,
-					'Not found'
-				);else if (profile[this.props.params.id] == null) return _react2.default.createElement(
-					'div',
-					null,
-					'Not found'
-				);else {
-					profile = profile[this.props.params.id];
+				var profile = this.props.profiles[this.props.params.id];
 	
-					return _react2.default.createElement(
-						'div',
+				return profile == null ? _react2.default.createElement(
+					'div',
+					null,
+					'Not found'
+				) : _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'h2',
 						null,
-						_react2.default.createElement(
-							'h2',
-							null,
-							'Profile Container'
-						),
-						_react2.default.createElement(
-							'h3',
-							null,
-							profile.username
-						),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement(
-							'h3',
-							null,
-							profile.email
-						),
-						_react2.default.createElement('br', null)
-					);
-				}
+						'Profile Container'
+					),
+					_react2.default.createElement(
+						'h3',
+						null,
+						profile.username
+					),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						'h3',
+						null,
+						profile.email
+					),
+					_react2.default.createElement('br', null)
+				);
 			}
 		}]);
 	

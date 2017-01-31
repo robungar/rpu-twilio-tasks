@@ -13,29 +13,22 @@ class Profile extends Component {
 	if (this.props.profiles[id] != null)
 		return
 
-	console.log('TEST!')
+	
 	this.props.fetchProfile(id)
-	console.log('TEST 2')
+	
 
 	}
 
 	render(){
-		let profile = this.props.profiles
-		if (profile == null)
-			return (<div>Not found</div>) 
-		else if (profile[this.props.params.id] == null)
-			return (<div>Not found</div>)
-		else {
-			profile = profile[this.props.params.id]
-
-			return(
-				<div>
-					<h2>Profile Container</h2>
-					<h3>{profile.username}</h3><br />
-					<h3>{profile.email}</h3><br />
-				</div>
-			)
-		}
+		const profile = this.props.profiles[this.props.params.id]
+		
+		return (profile == null) ? <div>Not found</div> : (
+			<div>
+				<h2>Profile Container</h2>
+				<h3>{profile.username}</h3><br />
+				<h3>{profile.email}</h3><br />
+			</div>
+		)
 	}
 }
 
