@@ -52992,10 +52992,10 @@
 		_createClass(Profile, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
-				console.log('PROFILE: ' + JSON.stringify(this.props.profile));
-				console.log('MESSAGE: ' + JSON.stringify(this.props.message));
+				// console.log('PROFILE: '+JSON.stringify(this.props.profile))
+				// console.log('MESSAGE: '+JSON.stringify(this.props.message))
 	
-				console.log('PARAMS: ' + JSON.stringify(this.props.params));
+				// console.log('PARAMS: '+JSON.stringify(this.props.params))
 	
 				var id = this.props.params.id;
 				if (this.props.profiles[id] != null) return;
@@ -53048,7 +53048,7 @@
 	var stateToProps = function stateToProps(state) {
 		return {
 	
-			profiles: state.profile //always logged in person, not profile
+			profiles: state.profile
 		};
 	};
 	
