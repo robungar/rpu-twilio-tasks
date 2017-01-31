@@ -11,6 +11,7 @@ class Task extends Component {
 			message: {
 				text: ''
 			}
+			messagesLoaded: false
 		}
 	}
 
@@ -18,9 +19,18 @@ class Task extends Component {
 	componentDidMount(){
 	//	 console.log('componentDidMount: '+JSON.stringify(this.prop(this.props.params.id)))
 		
-		if (this.props.messages != null)
+		if (this.state.messagesLoaded)
 			return
+
 		this.props.fetchMessages({task: this.props.params.id})
+		.then(response => {
+			this.setState({
+				messagesLoaded: true
+			})
+		})
+		.catch(err => {
+
+		})
 	}
 
 	updateMessage(event){
