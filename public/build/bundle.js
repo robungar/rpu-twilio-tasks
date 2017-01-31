@@ -52530,6 +52530,7 @@
 			value: function componentDidMount() {
 				//	 console.log('componentDidMount: '+JSON.stringify(this.prop(this.props.params.id)))
 	
+				if (this.props.messages != null) return;
 				this.props.fetchMessages({ task: this.props.params.id });
 			}
 		}, {
