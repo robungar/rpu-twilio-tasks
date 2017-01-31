@@ -53028,13 +53028,13 @@
 						_react2.default.createElement(
 							'h3',
 							null,
-							this.props.profile.username
+							profile.username
 						),
 						_react2.default.createElement('br', null),
 						_react2.default.createElement(
 							'h3',
 							null,
-							this.props.profile.email
+							profile.email
 						),
 						_react2.default.createElement('br', null)
 					);
@@ -53048,7 +53048,7 @@
 	var stateToProps = function stateToProps(state) {
 		return {
 	
-			profile: state.profile //always logged in person, not profile
+			profiles: state.profile //always logged in person, not profile
 		};
 	};
 	

@@ -29,8 +29,8 @@ class Profile extends Component {
 			return(
 				<div>
 					<h2>Profile Container</h2>
-					<h3>{this.props.profile.username}</h3><br />
-					<h3>{this.props.profile.email}</h3><br />
+					<h3>{profile.username}</h3><br />
+					<h3>{profile.email}</h3><br />
 				</div>
 			)
 		}
@@ -40,7 +40,7 @@ class Profile extends Component {
 const stateToProps = (state) => {
 	return {
 		
-		profile: state.profile //always logged in person, not profile
+		profiles: state.profile //always logged in person, not profile
 	}
 }
 
