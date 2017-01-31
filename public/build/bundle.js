@@ -53000,7 +53000,9 @@
 				var id = this.props.params.id;
 				if (this.props.profiles[id] != null) return;
 	
+				console.log('TEST!');
 				this.props.fetchProfile(id);
+				console.log('TEST 2');
 			}
 		}, {
 			key: 'render',
@@ -53054,9 +53056,11 @@
 	
 	var dispatchToProps = function dispatchToProps(dispatch) {
 		return {
+	
 			fetchProfile: function fetchProfile(id) {
 				return dispatch(_actions.actions.fetchProfile(id));
 			}
+	
 		};
 	};
 	
@@ -53507,7 +53511,7 @@
 	
 		switch (action.type) {
 			case _constants2.default.PROFILE_RECEIVED:
-				console.log('PROFILE_RECEIVED: ' + JSON.stringify(action.payload));
+				//	console.log('PROFILE_RECEIVED: '+JSON.stringify(action.payload))
 	
 				var profile = action.payload;
 				updated[profile.id] = profile;

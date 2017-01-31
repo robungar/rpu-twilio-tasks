@@ -13,7 +13,9 @@ class Profile extends Component {
 	if (this.props.profiles[id] != null)
 		return
 
+	console.log('TEST!')
 	this.props.fetchProfile(id)
+	console.log('TEST 2')
 
 	}
 
@@ -46,7 +48,9 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
 	return {
+		
 		fetchProfile: (id) => dispatch(actions.fetchProfile(id))
+
 	}
 }
 
