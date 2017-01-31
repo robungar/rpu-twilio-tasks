@@ -52530,9 +52530,10 @@
 			value: function componentDidMount() {
 				console.log('componentDidMount: ' + this.props.params.id);
 	
-				if (this.props.messages[this.props.params.id] != null) return;
+				if (this.props.message[this.props.params.id] != null) return;
 	
 				this.props.fetchMessages({ task: this.props.params.id });
+				console.log('Hello!');
 			}
 		}, {
 			key: 'updateMessage',

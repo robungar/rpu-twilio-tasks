@@ -18,10 +18,11 @@ class Task extends Component {
 	componentDidMount(){
 		console.log('componentDidMount: '+ this.props.params.id)
 		
-		if (this.props.messages[this.props.params.id] != null)
+		if (this.props.message[this.props.params.id] != null)
 			return
 
-		this.props.fetchMessages({task: this.props.params.id})	
+		this.props.fetchMessages({task: this.props.params.id})
+		console.log('Hello!')
 	}
 
 	updateMessage(event){
