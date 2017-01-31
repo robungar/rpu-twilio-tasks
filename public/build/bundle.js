@@ -52528,7 +52528,7 @@
 		_createClass(Task, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
-				console.log('componentDidMount: ' + JSON.stringify(this.props(this.props.params.id)));
+				console.log('componentDidMount: ' + this.props.params.id);
 	
 				if (this.props.messages[this.props.params.id] != null) return;
 	
