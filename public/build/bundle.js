@@ -52972,6 +52972,8 @@
 	
 	var _actions = __webpack_require__(349);
 	
+	var _actions2 = _interopRequireDefault(_actions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -53056,11 +53058,9 @@
 	
 	var dispatchToProps = function dispatchToProps(dispatch) {
 		return {
-	
 			fetchProfile: function fetchProfile(id) {
-				return dispatch(_actions.actions.fetchProfile(id));
+				return dispatch(_actions2.default.fetchProfile(id));
 			}
-	
 		};
 	};
 	

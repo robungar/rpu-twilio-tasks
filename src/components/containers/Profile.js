@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { actions } from '../../actions'
+import actions from '../../actions'
 
 class Profile extends Component {
 	componentDidMount(){
@@ -48,9 +48,7 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
 	return {
-		
 		fetchProfile: (id) => dispatch(actions.fetchProfile(id))
-
 	}
 }
 
