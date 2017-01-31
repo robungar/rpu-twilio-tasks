@@ -52533,7 +52533,11 @@
 				if (this.props.message[this.props.params.id] != null) return;
 	
 				this.props.fetchMessages({ task: this.props.params.id });
-				console.log('Hello!');
+			}
+		}, {
+			key: 'componentDidUpdate',
+			value: function componentDidUpdate() {
+				console.log('Hello');
 			}
 		}, {
 			key: 'updateMessage',

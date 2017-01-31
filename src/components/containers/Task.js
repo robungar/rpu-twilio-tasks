@@ -22,7 +22,12 @@ class Task extends Component {
 			return
 
 		this.props.fetchMessages({task: this.props.params.id})
-		console.log('Hello!')
+		
+	}
+
+
+	componentDidUpdate(){
+		console.log('Hello')
 	}
 
 	updateMessage(event){
