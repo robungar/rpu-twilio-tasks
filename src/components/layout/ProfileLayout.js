@@ -4,8 +4,15 @@ import { Profile } from '../containers'
 class ProfileLayout extends Component {
 	render(){
 		return(
-			<div>
-				<Profile {...this.props} />
+			<div id="wrapper">
+				<div id="main">
+					<div className="inner">
+						<header id="header">
+							<a href="#" className="logo"><strong>Twilio Tasks</strong></a>
+						</header>	
+					</div>
+					<Profile {...this.props} />
+				</div>
 			</div>
 		)
 	}

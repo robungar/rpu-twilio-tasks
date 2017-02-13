@@ -21597,81 +21597,11 @@
 								{ id: 'header' },
 								_react2.default.createElement(
 									'a',
-									{ href: 'index.html', className: 'logo' },
+									{ href: '#', className: 'logo' },
 									_react2.default.createElement(
 										'strong',
 										null,
-										'Editorial'
-									),
-									' by HTML5 UP'
-								),
-								_react2.default.createElement(
-									'ul',
-									{ className: 'icons' },
-									_react2.default.createElement(
-										'li',
-										null,
-										_react2.default.createElement(
-											'a',
-											{ href: '#', className: 'icon fa-twitter' },
-											_react2.default.createElement(
-												'span',
-												{ className: 'label' },
-												'Twitter'
-											)
-										)
-									),
-									_react2.default.createElement(
-										'li',
-										null,
-										_react2.default.createElement(
-											'a',
-											{ href: '#', className: 'icon fa-facebook' },
-											_react2.default.createElement(
-												'span',
-												{ className: 'label' },
-												'Facebook'
-											)
-										)
-									),
-									_react2.default.createElement(
-										'li',
-										null,
-										_react2.default.createElement(
-											'a',
-											{ href: '#', className: 'icon fa-snapchat-ghost' },
-											_react2.default.createElement(
-												'span',
-												{ className: 'label' },
-												'Snapchat'
-											)
-										)
-									),
-									_react2.default.createElement(
-										'li',
-										null,
-										_react2.default.createElement(
-											'a',
-											{ href: '#', className: 'icon fa-instagram' },
-											_react2.default.createElement(
-												'span',
-												{ className: 'label' },
-												'Instagram'
-											)
-										)
-									),
-									_react2.default.createElement(
-										'li',
-										null,
-										_react2.default.createElement(
-											'a',
-											{ href: '#', className: 'icon fa-medium' },
-											_react2.default.createElement(
-												'span',
-												{ className: 'label' },
-												'Medium'
-											)
-										)
+										'Twilio Tasks'
 									)
 								)
 							),
@@ -52787,15 +52717,6 @@
 					'div',
 					{ className: 'inner' },
 					_react2.default.createElement(
-						'section',
-						{ id: 'search', className: 'alt' },
-						_react2.default.createElement(
-							'form',
-							{ method: 'post', action: '#' },
-							_react2.default.createElement('input', { type: 'text', name: 'query', id: 'query', placeholder: 'Search' })
-						)
-					),
-					_react2.default.createElement(
 						'nav',
 						{ id: 'menu' },
 						_react2.default.createElement(
@@ -52830,7 +52751,7 @@
 						_react2.default.createElement(
 							'p',
 							{ className: 'copyright' },
-							'\xA9 Untitled. All rights reserved. Demo Images: ',
+							'\xA9 Rob Ungar. All rights reserved. Demo Images: ',
 							_react2.default.createElement(
 								'a',
 								{ href: 'https://unsplash.com' },
@@ -53046,16 +52967,12 @@
 					'Not found'
 				) : _react2.default.createElement(
 					'div',
-					null,
+					{ style: { marginLeft: 72 } },
 					_react2.default.createElement(
 						'h2',
 						null,
-						'Profile Container'
-					),
-					_react2.default.createElement(
-						'h3',
-						null,
-						profile.username
+						profile.username,
+						'\'s Profile'
 					),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement(
@@ -53121,81 +53038,11 @@
 						{ id: 'header' },
 						_react2.default.createElement(
 							'a',
-							{ href: 'index.html', className: 'logo' },
+							{ href: '#', className: 'logo' },
 							_react2.default.createElement(
 								'strong',
 								null,
-								'Editorial'
-							),
-							' by HTML5 UP'
-						),
-						_react2.default.createElement(
-							'ul',
-							{ className: 'icons' },
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: '#', className: 'icon fa-twitter' },
-									_react2.default.createElement(
-										'span',
-										{ className: 'label' },
-										'Twitter'
-									)
-								)
-							),
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: '#', className: 'icon fa-facebook' },
-									_react2.default.createElement(
-										'span',
-										{ className: 'label' },
-										'Facebook'
-									)
-								)
-							),
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: '#', className: 'icon fa-snapchat-ghost' },
-									_react2.default.createElement(
-										'span',
-										{ className: 'label' },
-										'Snapchat'
-									)
-								)
-							),
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: '#', className: 'icon fa-instagram' },
-									_react2.default.createElement(
-										'span',
-										{ className: 'label' },
-										'Instagram'
-									)
-								)
-							),
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: '#', className: 'icon fa-medium' },
-									_react2.default.createElement(
-										'span',
-										{ className: 'label' },
-										'Medium'
-									)
-								)
+								'Twilio Tasks'
 							)
 						)
 					),
@@ -53250,8 +53097,29 @@
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					null,
-					_react2.default.createElement(_containers.Profile, this.props)
+					{ id: 'wrapper' },
+					_react2.default.createElement(
+						'div',
+						{ id: 'main' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'inner' },
+							_react2.default.createElement(
+								'header',
+								{ id: 'header' },
+								_react2.default.createElement(
+									'a',
+									{ href: '#', className: 'logo' },
+									_react2.default.createElement(
+										'strong',
+										null,
+										'Twilio Tasks'
+									)
+								)
+							)
+						),
+						_react2.default.createElement(_containers.Profile, this.props)
+					)
 				);
 			}
 		}]);
@@ -53382,7 +53250,7 @@
 	
 	var initialState = {
 		selectedCategory: 'delivery',
-		categories: ['misc', 'delivery', 'dog walking', 'house cleaning']
+		categories: ['delivery', 'dog walking', 'house cleaning', 'misc']
 	};
 	
 	exports.default = function () {

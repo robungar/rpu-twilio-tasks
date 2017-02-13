@@ -11,11 +11,6 @@ class Categories extends Component {
 	render(){
 		return (
 			<div className="inner">
-				<section id="search" className="alt">
-					<form method="post" action="#">
-						<input type="text" name="query" id="query" placeholder="Search" />
-					</form>
-				</section>
 				<nav id="menu">
 					<header className="major">
 						<h2>Categories</h2>
@@ -35,7 +30,7 @@ class Categories extends Component {
 				</nav>
 				
 				<footer id="footer">
-					<p className="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+					<p className="copyright">&copy; Rob Ungar. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 				</footer>
 			</div>
 		)
