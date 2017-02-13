@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import actions from '../../actions'
 import { TextUtil, DateUtil } from '../../utils'
 import { Link } from 'react-router'
+import Promise from 'bluebird'
 
 class Task extends Component {
 	constructor(){
 		super()
 		this.state = {
+			inLoop: false,
 			message: {
 				text: ''
 			}
@@ -21,14 +23,37 @@ class Task extends Component {
 		if (this.props.message[this.props.params.id] != null)
 			return
 
+		this.setState({
+			inLoop: true
+		})
+		// this.props.fetchMessages({task: this.props.params.id})
+		this.fetchMessages()
+
+	}
+
+	
+
+	fetchMessages(){
 		this.props.fetchMessages({task: this.props.params.id})
-		
+		.then(response => {
+			console.log('IN LOOP?: '+this.state.inLoop)
+			console.log('LOCATION?: '+JSON.stringify(this.props.router.location))
+			// wrong path, bail out
+			if(this.props.router.location.pathname != '/task/'+this.props.params.id)
+				return
+
+			if(this.state.inLoop == false)
+				return
+
+			setTimeout(() => {
+				this.fetchMessages()
+			}, 3*1000)
+		})
+		.catch(err => {
+			console.log('ERROR: '+err)
+		})
 	}
 
-
-	componentDidUpdate(){
-		console.log('Hello')
-	}
 
 	updateMessage(event){
 		let updated = Object.assign({}, this.state.message)

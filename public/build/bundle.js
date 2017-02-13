@@ -52501,6 +52501,10 @@
 	
 	var _reactRouter = __webpack_require__(351);
 	
+	var _bluebird = __webpack_require__(191);
+	
+	var _bluebird2 = _interopRequireDefault(_bluebird);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -52518,6 +52522,7 @@
 			var _this = _possibleConstructorReturn(this, (Task.__proto__ || Object.getPrototypeOf(Task)).call(this));
 	
 			_this.state = {
+				inLoop: false,
 				message: {
 					text: ''
 				}
@@ -52532,12 +52537,31 @@
 	
 				if (this.props.message[this.props.params.id] != null) return;
 	
-				this.props.fetchMessages({ task: this.props.params.id });
+				this.setState({
+					inLoop: true
+				});
+				// this.props.fetchMessages({task: this.props.params.id})
+				this.fetchMessages();
 			}
 		}, {
-			key: 'componentDidUpdate',
-			value: function componentDidUpdate() {
-				console.log('Hello');
+			key: 'fetchMessages',
+			value: function fetchMessages() {
+				var _this2 = this;
+	
+				this.props.fetchMessages({ task: this.props.params.id }).then(function (response) {
+					console.log('IN LOOP?: ' + _this2.state.inLoop);
+					console.log('LOCATION?: ' + JSON.stringify(_this2.props.router.location));
+					// wrong path, bail out
+					if (_this2.props.router.location.pathname != '/task/' + _this2.props.params.id) return;
+	
+					if (_this2.state.inLoop == false) return;
+	
+					setTimeout(function () {
+						_this2.fetchMessages();
+					}, 3 * 1000);
+				}).catch(function (err) {
+					console.log('ERROR: ' + err);
+				});
 			}
 		}, {
 			key: 'updateMessage',
@@ -52553,7 +52577,7 @@
 		}, {
 			key: 'submitMessage',
 			value: function submitMessage(event) {
-				var _this2 = this;
+				var _this3 = this;
 	
 				event.preventDefault();
 				console.log('submitMessage: ' + JSON.stringify(this.state.message));
@@ -52578,7 +52602,7 @@
 						text: updated.text,
 						taskResponder: updated.profile.username
 					};
-					return _this2.props.notify(params);
+					return _this3.props.notify(params);
 				}).then(function (response) {
 					alert('Thanks for replying. Good luck!');
 				}).catch(function (err) {
@@ -53509,7 +53533,7 @@
 	
 		switch (action.type) {
 			case _constants2.default.PROFILE_RECEIVED:
-				//	console.log('PROFILE_RECEIVED: '+JSON.stringify(action.payload))
+				console.log('PROFILE_RECEIVED: ' + JSON.stringify(action.payload));
 	
 				var profile = action.payload;
 				updated[profile.id] = profile;
